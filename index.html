@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eren'in YKS 2027 Çalışma Alanı | YBS Hedefi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS Variables & Design Tokens (Dark & Light Mode)
+       ========================================================================== */
+    :root {
+      /* Typography */
+      --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Dark Mode Palette (Default) - Ultra-optimized for 60 FPS */
+      --card-bg: rgba(15, 23, 42, 0.93);
+      --card-bg-hover: rgba(22, 32, 56, 0.96);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-glow: rgba(56, 189, 248, 0.3);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --accent-cyan: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+
+      --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+      --ybs-gradient: linear-gradient(135deg, #a855f7 0%, #38bdf8 100%);
+
+      --timer-circle-track: rgba(255, 255, 255, 0.07);
+      --timer-circle-focus: #38bdf8;
+      --timer-circle-short: #10b981;
+      --timer-circle-long: #a855f7;
+
+      --button-bg: rgba(255, 255, 255, 0.06);
+      --button-hover: rgba(255, 255, 255, 0.12);
+      --button-border: rgba(255, 255, 255, 0.1);
+
+      --shadow-glass: 0 4px 20px 0 rgba(0, 0, 0, 0.35);
+      --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.15);
+      --blur-strength: blur(4px);
+    }
+
+    [data-theme="light"] {
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-bg-hover: rgba(255, 255, 255, 1);
+      --card-border: rgba(226, 232, 240, 0.9);
+      --card-border-glow: rgba(99, 102, 241, 0.3);
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #94a3b8;
+
+      --accent-cyan: #0284c7;
+      --accent-indigo: #4f46e5;
+      --accent-purple: #9333ea;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+
+      --primary-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      --ybs-gradient: linear-gradient(135deg, #9333ea 0%, #0284c7 100%);
+
+      --timer-circle-track: rgba(0, 0, 0, 0.07);
+      --timer-circle-focus: #0284c7;
+      --timer-circle-short: #059669;
+      --timer-circle-long: #9333ea;
+
+      --button-bg: rgba(0, 0, 0, 0.04);
+      --button-hover: rgba(0, 0, 0, 0.08);
+      --button-border: rgba(0, 0, 0, 0.08);
+
+      --shadow-glass: 0 4px 18px 0 rgba(148, 163, 184, 0.2);
+      --shadow-glow: 0 0 16px rgba(99, 102, 241, 0.12);
+    }
+
+    /* ==========================================================================
+       Reset & Base Styles (Strict Mobile Fit + 60 FPS Performance)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: #080c14;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 40%, rgba(99, 102, 241, 0.07) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.06) 0%, transparent 45%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-main);
+      min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="light"] body {
+      background-color: #f1f5f9;
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 90% 40%, rgba(99, 102, 241, 0.09) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.06) 0%, transparent 45%);
+    }
+
+    /* App Container */
+    .app-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    /* ==========================================================================
+       Ultra-Smooth Component Cards (Zero GPU Lag)
+       ========================================================================== */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-glass);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @supports (backdrop-filter: blur(4px)) {
+      .glass-card {
+        backdrop-filter: var(--blur-strength);
+        -webkit-backdrop-filter: var(--blur-strength);
+      }
+    }
+
+    .glass-card:hover {
+      border-color: var(--card-border-glow);
+    }
+
+    /* ==========================================================================
+       Navbar & Header Section
+       ========================================================================== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .user-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .avatar-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 1rem;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .user-info h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge-tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-cyan);
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .user-subtext {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Theme Toggle Switch */
+    .theme-toggle-btn {
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--text-main);
+      padding: 0.6rem 0.9rem;
+      border-radius: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--button-hover);
+      transform: translateY(-1px);
+    }
+
+    .theme-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ==========================================================================
+       Hero Banner / Motivational Header
+       ========================================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+      border: 1px solid var(--card-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      background: radial-gradient(circle at right, rgba(56, 189, 248, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-pretitle {
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .gradient-text {
+      background: var(--ybs-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-quote-box {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-left: 3px solid var(--accent-indigo);
+      padding-left: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       YKS 2027 Countdown Section
+       ========================================================================== */
+    .countdown-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .countdown-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .countdown-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .target-date-badge {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      padding: 0.25rem 0.85rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+    }
+
+    /* Countdown Grid */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .countdown-tile {
+      background: var(--button-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.25rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-tile:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
+    }
+
+    .countdown-number {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      font-family: var(--font-mono);
+      line-height: 1;
+      color: var(--text-main);
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.4rem;
+    }
+
+    .countdown-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .countdown-progress-track {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--button-bg);
+      border-radius: 9999px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-gradient);
+      border-radius: 9999px;
+      transition: width 1s ease-in-out;
+    }
+
+    .progress-stats {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       Dashboard Main Split Layout (Pomodoro + Tools)
+       ========================================================================== */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 1.75rem;
+    }
+
+    /* ==========================================================================
+       Advanced Pomodoro Section
+       ========================================================================== */
+    .pomodoro-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .pomo-mode-selector {
+      display: flex;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      padding: 0.35rem;
+      border-radius: 9999px;
+      gap: 0.35rem;
+      max-width: 100%;
+    }
+
+    .mode-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.55rem 1.15rem;
+      border-radius: 9999px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .mode-btn.active {
+      background: var(--card-bg-hover);
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--card-border-glow);
+    }
+
+    /* Circular SVG Timer Container */
+    .timer-display-wrap {
+      position: relative;
+      width: 270px;
+      height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+
+    .timer-svg {
+      transform: rotate(-90deg) translateZ(0);
+      width: 100%;
+      height: 100%;
+    }
+
+    .timer-circle-bg {
+      fill: none;
+      stroke: var(--timer-circle-track);
+      stroke-width: 9;
+    }
+
+    .timer-circle-progress {
+      fill: none;
+      stroke: var(--timer-circle-focus);
+      stroke-width: 9;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.6s ease, stroke 0.4s ease;
+      will-change: stroke-dashoffset;
+      transform: translateZ(0);
+    }
+
+    .timer-text-content {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .time-digits {
+      font-family: var(--font-mono);
+      font-size: 3.25rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--text-main);
+    }
+
+    .timer-status-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* Pomodoro Controls */
+    .pomo-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .control-btn {
+      font-family: inherit;
+      font-weight: 600;
+      border: 1px solid var(--button-border);
+      border-radius: 0.85rem;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .control-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .control-btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-secondary {
+      background: var(--button-bg);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--button-hover);
+    }
+
+    /* Quick Duration Adjusters */
+    .quick-adjust-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .quick-adjust-btn {
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--text-muted);
+      border-radius: 9999px;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .quick-adjust-btn:hover {
+      background: var(--button-hover);
+      color: var(--text-main);
+      border-color: var(--card-border-glow);
+      transform: translateY(-1px);
+    }
+
+    /* Customize Settings Button */
+    .settings-toggle-btn {
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--text-muted);
+      border-radius: 9999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .settings-toggle-btn:hover {
+      background: var(--button-hover);
+      color: var(--text-main);
+      border-color: var(--accent-cyan);
+    }
+
+    /* Modal Backdrop & Dialog (Optimized, No 100vw Overflow, No Fullscreen Blur Lag) */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border-glow);
+      box-shadow: var(--shadow-glass), 0 0 25px rgba(56, 189, 248, 0.15);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 460px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      transform: scale(0.96) translateY(8px);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--accent-rose);
+    }
+
+    .preset-chips-wrap {
+      margin-bottom: 1.25rem;
+    }
+
+    .preset-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .preset-chip {
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      border-radius: 9999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .preset-chip:hover {
+      background: var(--button-hover);
+      color: var(--text-main);
+      border-color: var(--accent-cyan);
+    }
+
+    .settings-form-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .setting-label-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .setting-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .setting-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .setting-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .setting-number-input {
+      width: 75px;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      border-radius: 0.6rem;
+      padding: 0.45rem 0.6rem;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 700;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .setting-number-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .setting-unit {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.25rem;
+    }
+
+    /* Session Tracker */
+    .session-tracker-box {
+      width: 100%;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .session-info {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .cycle-dots {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .cycle-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--button-bg);
+      border: 1.5px solid var(--card-border);
+      transition: all 0.3s ease;
+    }
+
+    .cycle-dot.completed {
+      background: var(--accent-cyan);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    }
+
+    .cycle-dot.current {
+      border-color: var(--accent-cyan);
+      transform: scale(1.2);
+    }
+
+    /* ==========================================================================
+       Sidebar Widgets (Daily Focus & Study Tasks)
+       ========================================================================== */
+    .sidebar-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .widget-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Target Major Goal Card */
+    .goal-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.06) 100%);
+      border-left: 4px solid var(--accent-indigo);
+    }
+
+    .goal-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-indigo);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .goal-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .goal-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Study Tasks Checklist */
+    .task-input-wrap {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .task-input {
+      flex: 1;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      border-radius: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .task-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .task-add-btn {
+      background: var(--accent-cyan);
+      color: #0b1120;
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .task-add-btn:hover {
+      opacity: 0.9;
+    }
+
+    .tasks-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 0.25rem;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.85rem;
+      background: var(--button-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.75rem;
+      font-size: 0.88rem;
+      transition: all 0.2s ease;
+    }
+
+    .task-item:hover {
+      background: var(--card-bg-hover);
+    }
+
+    .task-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      cursor: pointer;
+      user-select: none;
+      flex: 1;
+    }
+
+    .task-checkbox {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      accent-color: var(--accent-cyan);
+      cursor: pointer;
+    }
+
+    .task-item.completed .task-text {
+      text-decoration: line-through;
+      color: var(--text-dim);
+    }
+
+    .task-del-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0.2rem;
+      border-radius: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .task-del-btn:hover {
+      color: var(--accent-rose);
+    }
+
+    /* Quick Study Quotes / Status */
+    .status-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pill-icon {
+      font-size: 0.85rem;
+    }
+
+    /* Sound Switch */
+    .sound-toggle-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1rem;
+      padding: 0.2rem;
+      transition: color 0.2s ease;
+    }
+
+    .sound-toggle-btn:hover {
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       Responsive Media Queries (Flawless Mobile Fit + Low-End PC Smoothness)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .countdown-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .countdown-tile:nth-child(4),
+      .countdown-tile:nth-child(5) {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app-wrapper {
+        padding: 0.75rem 0.65rem 2.5rem;
+        gap: 1rem;
+        width: 100%;
+        max-width: 100%;
+      }
+      .navbar {
+        padding: 0.75rem 0.85rem;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .user-brand {
+        gap: 0.65rem;
+      }
+      .avatar-badge {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+        border-radius: 0.75rem;
+      }
+      .user-info h1 {
+        font-size: 0.95rem;
+      }
+      .user-subtext {
+        font-size: 0.75rem;
+      }
+      .theme-toggle-btn {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.8rem;
+      }
+      .hero-banner {
+        padding: 1.15rem 0.95rem;
+        gap: 0.65rem;
+      }
+      .hero-title {
+        font-size: 1.25rem;
+      }
+      .hero-quote-box {
+        font-size: 0.85rem;
+        padding-left: 0.6rem;
+      }
+      .glass-card {
+        padding: 1.15rem 0.85rem;
+        border-radius: 1rem;
+      }
+      .countdown-section {
+        gap: 1.1rem;
+      }
+      .countdown-title {
+        font-size: 1.15rem;
+      }
+      .target-date-badge {
+        font-size: 0.76rem;
+        padding: 0.2rem 0.65rem;
+      }
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .countdown-tile {
+        padding: 0.85rem 0.35rem;
+        border-radius: 0.85rem;
+      }
+      .countdown-number {
+        font-size: 1.85rem;
+      }
+      .countdown-label {
+        font-size: 0.72rem;
+      }
+      .countdown-tile:last-child {
+        grid-column: span 2;
+      }
+      .pomo-mode-selector {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        padding: 0.25rem;
+        gap: 0.25rem;
+        border-radius: 0.75rem;
+        box-sizing: border-box;
+      }
+      .mode-btn {
+        flex: 1;
+        padding: 0.5rem 0.2rem;
+        font-size: 0.72rem;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
+        border-radius: 0.55rem;
+      }
+      .settings-toggle-btn {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.75rem;
+      }
+      .timer-display-wrap {
+        width: 215px;
+        height: 215px;
+        margin: 0.25rem 0;
+      }
+      .time-digits {
+        font-size: 2.5rem;
+      }
+      .pomo-controls {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 0.45rem;
+        flex-wrap: wrap;
+      }
+      .control-btn {
+        padding: 0.6rem 0.95rem;
+        font-size: 0.85rem;
+      }
+      .quick-adjust-group {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+      .session-tracker-box {
+        padding-top: 1rem;
+      }
+      .modal-card {
+        padding: 1.25rem 1rem;
+        width: 95%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      #themeText, #perfText {
+        display: none;
+      }
+    }
+
+    /* Ultra-Fast Low-Spec PC Mode (Zero Blur, Zero Shadow, 60 FPS) */
+    html.eco-mode *,
+    html.eco-mode *::before,
+    html.eco-mode *::after {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+    html.eco-mode body {
+      background-image: none !important;
+      background-color: #0b0f19 !important;
+    }
+    [data-theme="light"].eco-mode body {
+      background-image: none !important;
+      background-color: #f1f5f9 !important;
+    }
+    html.eco-mode .glass-card {
+      background: #111827 !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    [data-theme="light"].eco-mode .glass-card {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+    }
+    .theme-toggle-btn.perf-active {
+      background: rgba(56, 189, 248, 0.18) !important;
+      border-color: var(--accent-cyan) !important;
+      color: var(--accent-cyan) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- 1. Navigation & Header -->
+    <header class="navbar glass-card">
+      <div class="user-brand">
+        <div class="avatar-badge">E</div>
+        <div class="user-info">
+          <h1>
+            Eren 
+            <span class="badge-tag">12. Sınıf</span>
+          </h1>
+          <p class="user-subtext">Hedef: Yönetim Bilişim Sistemleri (YBS)</p>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button id="perfToggle" class="theme-toggle-btn" title="Düşük Sistem / 60 FPS Modu" aria-label="Performans Modu">
+          <span>⚡</span>
+          <span id="perfText">60 FPS Modu</span>
+        </button>
+        <button id="soundToggle" class="sound-toggle-btn" title="Ses Bildirimi Aç/Kapat" aria-label="Ses">
+          🔔
+        </button>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Tema Değiştir">
+          <span class="theme-icon" id="themeIcon">☀️</span>
+          <span id="themeText">Açık Mod</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. Hero & Motivational Banner -->
+    <section class="hero-banner glass-card">
+      <div class="hero-pretitle">
+        <span>🚀</span> Kişisel Başarı & Verimlilik Merkezi
+      </div>
+      <h2 class="hero-title">
+        Eren'in <span class="gradient-text">Yönetim Bilişim Sistemleri</span> Yolculuğu — YKS 2027
+      </h2>
+      <div class="hero-quote-box">
+        <span id="motivationalQuote">"Büyük hedefler, her gün atılan kararlı ve küçük adımlarla inşa edilir."</span>
+      </div>
+    </section>
+
+    <!-- 3. YKS 2027 Countdown Timer -->
+    <section class="countdown-section glass-card">
+      <div class="countdown-header">
+        <h3 class="countdown-title">
+          <span>⏳</span> YKS 2027 Geri Sayım Sayacı
+        </h3>
+        <span class="target-date-badge">19 Haziran 2027 Cumartesi &bull; 10:15</span>
+      </div>
+
+      <!-- Real-time Countdown Tiles -->
+      <div class="countdown-grid">
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdMonths">00</span>
+          <span class="countdown-label">Ay</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdDays">00</span>
+          <span class="countdown-label">Gün</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdHours">00</span>
+          <span class="countdown-label">Saat</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdMinutes">00</span>
+          <span class="countdown-label">Dakika</span>
+        </div>
+        <div class="countdown-tile">
+          <span class="countdown-number" id="cdSeconds">00</span>
+          <span class="countdown-label">Saniye</span>
+        </div>
+      </div>
+
+      <!-- Target Progress Bar -->
+      <div class="countdown-progress-track">
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="totalProgressFill"></div>
+        </div>
+        <div class="progress-stats">
+          <span id="totalDaysRemaining">Hesaplanıyor...</span>
+          <span id="progressPercentage">0% Tamamlandı</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Dashboard Split Grid: Pomodoro & Productivity Tools -->
+    <div class="dashboard-grid">
+
+      <!-- Advanced Pomodoro Timer -->
+      <section class="pomodoro-section glass-card">
+        <!-- Mode Switcher & Customizer Button -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 0.65rem; width: 100%;">
+          <div class="pomo-mode-selector" role="tablist">
+            <button class="mode-btn active" data-mode="focus" id="btnModeFocus">Odaklanma (25 dk)</button>
+            <button class="mode-btn" data-mode="shortBreak" id="btnModeShort">Kısa Mola (5 dk)</button>
+            <button class="mode-btn" data-mode="longBreak" id="btnModeLong">Uzun Mola (15 dk)</button>
+          </div>
+          <button class="settings-toggle-btn" id="btnOpenPomoSettings" title="Pomodoro Sürelerini Özelleştir">
+            <span>⚙️</span> Süreleri Özelleştir
+          </button>
+        </div>
+
+        <!-- Circular Dynamic SVG Progress Display -->
+        <div class="timer-display-wrap">
+          <svg class="timer-svg" viewBox="0 0 240 240">
+            <!-- Background Track -->
+            <circle class="timer-circle-bg" cx="120" cy="120" r="102" />
+            <!-- Dynamic Progress Stroke -->
+            <circle class="timer-circle-progress" id="timerProgressCircle" cx="120" cy="120" r="102" />
+          </svg>
+
+          <div class="timer-text-content">
+            <div class="time-digits" id="timerTime">25:00</div>
+            <div class="timer-status-label" id="timerModeLabel">Derse Odaklan</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="pomo-controls">
+          <button class="control-btn btn-primary" id="btnStartPause">
+            <span id="playPauseIcon">▶</span>
+            <span id="playPauseText">Başlat</span>
+          </button>
+          <button class="control-btn btn-secondary" id="btnReset" title="Sıfırla">
+            <span>↺</span>
+            <span>Sıfırla</span>
+          </button>
+          <button class="control-btn btn-secondary" id="btnSkip" title="Sonraki Seansa Geç">
+            <span>⏭</span>
+            <span>Atla</span>
+          </button>
+        </div>
+
+        <!-- Quick Duration Adjusters (+/-) -->
+        <div class="quick-adjust-group" title="Hızlı Süre Ekle/Çıkar">
+          <button class="quick-adjust-btn" id="btnQuickSub5" title="5 dakika azalt">-5 dk</button>
+          <button class="quick-adjust-btn" id="btnQuickSub1" title="1 dakika azalt">-1 dk</button>
+          <button class="quick-adjust-btn" id="btnQuickAdd1" title="1 dakika ekle">+1 dk</button>
+          <button class="quick-adjust-btn" id="btnQuickAdd5" title="5 dakika ekle">+5 dk</button>
+        </div>
+
+        <!-- Session Cycle Tracker -->
+        <div class="session-tracker-box">
+          <div class="session-info">
+            <span>Döngü İlerlemesi</span>
+            <span id="cycleLabel">1 / 4 Seans</span>
+          </div>
+          <div class="cycle-dots" id="cycleDotsContainer">
+            <div class="cycle-dot current"></div>
+            <div class="cycle-dot"></div>
+            <div class="cycle-dot"></div>
+            <div class="cycle-dot"></div>
+          </div>
+          <div class="status-tags-row">
+            <div class="status-pill">
+              <span class="pill-icon">🔥</span>
+              <span>Tamamlanan: <strong id="totalCompletedSessions">0</strong> Seans</span>
+            </div>
+            <div class="status-pill">
+              <span class="pill-icon">⏱</span>
+              <span>Toplam Odak: <strong id="totalFocusMinutes">0</strong> dk</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sidebar Column: Target Info & Task Checklist -->
+      <aside class="sidebar-column">
+
+        <!-- Target Major Highlight Card -->
+        <div class="glass-card goal-card">
+          <span class="goal-badge">Üniversite Hedefi</span>
+          <h4 class="goal-name">Yönetim Bilişim Sistemleri (YBS)</h4>
+          <p class="goal-desc">
+            Teknoloji, yazılım mimarisi ve iş dünyasının kesişim noktası. YKS Eşit Ağırlık (EA) maratonunda her gün 
+            çözülen Matematik ve Edebiyat sorusu seni zirveye taşıyacak.
+          </p>
+          <div class="status-tags-row" style="margin-top: 1rem;">
+            <span class="status-pill"><span class="pill-icon">💻</span> Kodlama & Analiz</span>
+            <span class="status-pill"><span class="pill-icon">📊</span> Veri & Strateji</span>
+            <span class="status-pill"><span class="pill-icon">🎓</span> 12. Sınıf Disiplini</span>
+          </div>
+        </div>
+
+        <!-- Daily Study Task Hub -->
+        <div class="glass-card">
+          <div class="widget-title">
+            <span>📝 Günlük Çalışma Hedefleri</span>
+            <span id="taskStats" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">0/0</span>
+          </div>
+
+          <form id="taskForm" class="task-input-wrap">
+            <input 
+              type="text" 
+              id="taskInput" 
+              class="task-input" 
+              placeholder="Yeni çalışma hedefi ekle (örn: Mat-2 Fonksiyonlar)..." 
+              maxlength="65"
+              required 
+            />
+            <button type="submit" class="task-add-btn">Ekle</button>
+          </form>
+
+          <ul class="tasks-list" id="tasksList">
+            <!-- Dynamic task items injected via JS -->
+          </ul>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       Pomodoro Customization Modal
+       ========================================================================== -->
+  <div class="modal-backdrop" id="pomoSettingsModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">
+          <span>⚙️</span> Pomodoro Sürelerini Özelleştir
+        </h3>
+        <button class="modal-close-btn" id="btnCloseModal" aria-label="Kapat">&times;</button>
+      </div>
+
+      <!-- Quick Preset Buttons -->
+      <div class="preset-chips-wrap">
+        <span class="preset-label">Hızlı Hazır Şablonlar</span>
+        <div class="preset-chips">
+          <button type="button" class="preset-chip" data-preset="classic">🎯 Klasik (25 / 5 / 15)</button>
+          <button type="button" class="preset-chip" data-preset="deep">⚡ Derin Odak (50 / 10 / 25)</button>
+          <button type="button" class="preset-chip" data-preset="exam">📝 YKS Deneme (40 / 10 / 20)</button>
+          <button type="button" class="preset-chip" data-preset="sprint">🚀 Hızlı Sprint (15 / 3 / 10)</button>
+        </div>
+      </div>
+
+      <!-- Settings Inputs -->
+      <form id="pomoSettingsForm">
+        <div class="settings-form-grid">
+          <div class="setting-item">
+            <div class="setting-label-wrap">
+              <span class="setting-label">Odaklanma Süresi</span>
+              <span class="setting-desc">Ders ve soru çözüm süresi</span>
+            </div>
+            <div class="setting-input-wrap">
+              <input type="number" id="inputFocusTime" class="setting-number-input" min="1" max="180" value="25" required>
+              <span class="setting-unit">dk</span>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label-wrap">
+              <span class="setting-label">Kısa Mola Süresi</span>
+              <span class="setting-desc">Seans arası nefes alma</span>
+            </div>
+            <div class="setting-input-wrap">
+              <input type="number" id="inputShortBreak" class="setting-number-input" min="1" max="60" value="5" required>
+              <span class="setting-unit">dk</span>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label-wrap">
+              <span class="setting-label">Uzun Mola Süresi</span>
+              <span class="setting-desc">Döngü sonu dinlenme</span>
+            </div>
+            <div class="setting-input-wrap">
+              <input type="number" id="inputLongBreak" class="setting-number-input" min="1" max="90" value="15" required>
+              <span class="setting-unit">dk</span>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-label-wrap">
+              <span class="setting-label">Uzun Mola Döngüsü</span>
+              <span class="setting-desc">Kaç odak seansından sonra uzun mola</span>
+            </div>
+            <div class="setting-input-wrap">
+              <input type="number" id="inputCycles" class="setting-number-input" min="1" max="10" value="4" required>
+              <span class="setting-unit">seans</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="control-btn btn-secondary" id="btnResetDefaultSettings">Varsayılana Dön</button>
+          <button type="submit" class="control-btn btn-primary">Kaydet & Uygula</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Pure Vanilla JavaScript Application Logic
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* ==========================================================================
+         1. Audio Notification Synthesizer (Web Audio API - No External Files)
+         ========================================================================== */
+      class SoundManager {
+        constructor() {
+          this.audioCtx = null;
+          this.soundEnabled = true;
+        }
+
+        initContext() {
+          if (!this.audioCtx) {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (AudioContextClass) {
+              this.audioCtx = new AudioContextClass();
+            }
+          }
+          if (this.audioCtx && this.audioCtx.state === 'suspended') {
+            this.audioCtx.resume();
+          }
+        }
+
+        toggleSound() {
+          this.soundEnabled = !this.soundEnabled;
+          return this.soundEnabled;
+        }
+
+        playChime(type = 'success') {
+          if (!this.soundEnabled) return;
+          try {
+            this.initContext();
+            if (!this.audioCtx) return;
+
+            const now = this.audioCtx.currentTime;
+            const osc = this.audioCtx.createOscillator();
+            const gain = this.audioCtx.createGain();
+
+            osc.connect(gain);
+            gain.connect(this.audioCtx.destination);
+
+            if (type === 'success') {
+              // Pleasant modern high bell chime
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(587.33, now); // D5
+              osc.frequency.exponentialRampToValueAtTime(880, now + 0.15); // A5
+              gain.gain.setValueAtTime(0.2, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+              osc.start(now);
+              osc.stop(now + 0.8);
+            } else if (type === 'tick') {
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(440, now);
+              gain.gain.setValueAtTime(0.04, now);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+              osc.start(now);
+              osc.stop(now + 0.08);
+            }
+          } catch (e) {
+            console.warn('Audio feedback suppressed:', e);
+          }
+        }
+      }
+
+      const sound = new SoundManager();
+
+      // Sound button listener
+      const soundToggleBtn = document.getElementById('soundToggle');
+      soundToggleBtn.addEventListener('click', () => {
+        const isEnabled = sound.toggleSound();
+        soundToggleBtn.textContent = isEnabled ? '🔔' : '🔕';
+        soundToggleBtn.style.opacity = isEnabled ? '1' : '0.5';
+      });
+
+      /* ==========================================================================
+         2. Theme & Performance Mode (Low-Spec PC Optimization)
+         ========================================================================== */
+      const themeToggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const themeText = document.getElementById('themeText');
+      const rootHtml = document.documentElement;
+
+      const perfToggleBtn = document.getElementById('perfToggle');
+      const perfText = document.getElementById('perfText');
+
+      function applyPerfMode(isEco) {
+        if (isEco) {
+          rootHtml.classList.add('eco-mode');
+          perfToggleBtn.classList.add('perf-active');
+          perfText.textContent = '60 FPS Aktif';
+        } else {
+          rootHtml.classList.remove('eco-mode');
+          perfToggleBtn.classList.remove('perf-active');
+          perfText.textContent = '60 FPS Modu';
+        }
+        localStorage.setItem('eren_eco_mode', isEco ? 'true' : 'false');
+      }
+
+      // Check saved performance mode (default active on low-end or saved preference)
+      const savedEco = localStorage.getItem('eren_eco_mode') === 'true';
+      applyPerfMode(savedEco);
+
+      perfToggleBtn.addEventListener('click', () => {
+        const isCurrentEco = rootHtml.classList.contains('eco-mode');
+        applyPerfMode(!isCurrentEco);
+        sound.playChime('tick');
+      });
+
+      function applyTheme(theme) {
+        rootHtml.setAttribute('data-theme', theme);
+        if (theme === 'light') {
+          themeIcon.textContent = '🌙';
+          themeText.textContent = 'Koyu Mod';
+        } else {
+          themeIcon.textContent = '☀️';
+          themeText.textContent = 'Açık Mod';
+        }
+        localStorage.setItem('eren_study_theme', theme);
+      }
+
+      // Check saved theme or default to dark
+      const savedTheme = localStorage.getItem('eren_study_theme') || 'dark';
+      applyTheme(savedTheme);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = rootHtml.getAttribute('data-theme');
+        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+      });
+
+      /* ==========================================================================
+         3. YKS 2027 Countdown Timer Logic
+         Target: June 19, 2027, at 10:15:00 AM (Turkish Local Time)
+         ========================================================================== */
+      // Month in JS is 0-indexed: June = index 5
+      const YKS_TARGET_DATE = new Date(2027, 5, 19, 10, 15, 0);
+
+      // Start baseline date for overall preparation progress calculation
+      const STUDY_START_DATE = new Date(2024, 8, 1, 0, 0, 0); // 1 Sept 2024 (Start of High School Prep)
+
+      const cdMonthsEl = document.getElementById('cdMonths');
+      const cdDaysEl = document.getElementById('cdDays');
+      const cdHoursEl = document.getElementById('cdHours');
+      const cdMinutesEl = document.getElementById('cdMinutes');
+      const cdSecondsEl = document.getElementById('cdSeconds');
+      const totalDaysRemainingEl = document.getElementById('totalDaysRemaining');
+      const progressPercentageEl = document.getElementById('progressPercentage');
+      const totalProgressFillEl = document.getElementById('totalProgressFill');
+
+      function padZero(num) {
+        return String(num).padStart(2, '0');
+      }
+
+      function updateCountdown() {
+        const now = new Date();
+
+        if (now >= YKS_TARGET_DATE) {
+          cdMonthsEl.textContent = '00';
+          cdDaysEl.textContent = '00';
+          cdHoursEl.textContent = '00';
+          cdMinutesEl.textContent = '00';
+          cdSecondsEl.textContent = '00';
+          totalDaysRemainingEl.textContent = 'Sınav Günü Geldi!';
+          progressPercentageEl.textContent = '100%';
+          totalProgressFillEl.style.width = '100%';
+          return;
+        }
+
+        // Calendar-accurate calculation for Months and remaining Days
+        let tempDate = new Date(now.getTime());
+        let months = 0;
+
+        while (true) {
+          const testDate = new Date(tempDate.getTime());
+          testDate.setMonth(testDate.getMonth() + 1);
+          if (testDate <= YKS_TARGET_DATE) {
+            tempDate = testDate;
+            months++;
+          } else {
+            break;
+          }
+        }
+
+        const remainingMs = YKS_TARGET_DATE.getTime() - tempDate.getTime();
+        const days = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainingMs / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((remainingMs / (1000 * 60)) % 60);
+        const seconds = Math.floor((remainingMs / 1000) % 60);
+
+        // Update DOM
+        cdMonthsEl.textContent = padZero(months);
+        cdDaysEl.textContent = padZero(days);
+        cdHoursEl.textContent = padZero(hours);
+        cdMinutesEl.textContent = padZero(minutes);
+        cdSecondsEl.textContent = padZero(seconds);
+
+        // Total absolute days calculation
+        const totalDiffMs = YKS_TARGET_DATE.getTime() - now.getTime();
+        const totalNetDays = Math.ceil(totalDiffMs / (1000 * 60 * 60 * 24));
+        totalDaysRemainingEl.textContent = `Toplam ${totalNetDays.toLocaleString('tr-TR')} Gün Kaldı`;
+
+        // Preparation Progress percentage
+        const totalDuration = YKS_TARGET_DATE.getTime() - STUDY_START_DATE.getTime();
+        const elapsedDuration = now.getTime() - STUDY_START_DATE.getTime();
+        let progressPct = Math.min(Math.max((elapsedDuration / totalDuration) * 100, 0), 100).toFixed(1);
+
+        progressPercentageEl.textContent = `%${progressPct} Hazırlık İlerlemesi`;
+        totalProgressFillEl.style.width = `${progressPct}%`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      /* ==========================================================================
+         4. Advanced Pomodoro Timer Implementation with Customization
+         ========================================================================== */
+      const DEFAULT_POMO_SETTINGS = {
+        focus: 25,
+        shortBreak: 5,
+        longBreak: 15,
+        cycles: 4
+      };
+
+      let pomoSettings = JSON.parse(localStorage.getItem('eren_pomo_settings') || 'null');
+      if (!pomoSettings) {
+        pomoSettings = { ...DEFAULT_POMO_SETTINGS };
+      }
+
+      const MODES = {
+        focus: { duration: pomoSettings.focus * 60, label: 'Derse Odaklan', color: 'var(--timer-circle-focus)' },
+        shortBreak: { duration: pomoSettings.shortBreak * 60, label: 'Kısa Mola', color: 'var(--timer-circle-short)' },
+        longBreak: { duration: pomoSettings.longBreak * 60, label: 'Uzun Mola & Dinlenme', color: 'var(--timer-circle-long)' }
+      };
+
+      let currentMode = 'focus';
+      let timeLeft = MODES[currentMode].duration;
+      let timerInterval = null;
+      let isRunning = false;
+      let currentCycle = 1;
+      let totalCompletedSessionsCount = parseInt(localStorage.getItem('eren_pomo_completed') || '0', 10);
+      let totalFocusMinutesCount = parseInt(localStorage.getItem('eren_pomo_minutes') || '0', 10);
+
+      // DOM Elements
+      const timerTimeEl = document.getElementById('timerTime');
+      const timerModeLabelEl = document.getElementById('timerModeLabel');
+      const timerProgressCircle = document.getElementById('timerProgressCircle');
+      const btnStartPause = document.getElementById('btnStartPause');
+      const playPauseIcon = document.getElementById('playPauseIcon');
+      const playPauseText = document.getElementById('playPauseText');
+      const btnReset = document.getElementById('btnReset');
+      const btnSkip = document.getElementById('btnSkip');
+      const cycleDotsContainer = document.getElementById('cycleDotsContainer');
+      const cycleLabelEl = document.getElementById('cycleLabel');
+      const totalCompletedSessionsEl = document.getElementById('totalCompletedSessions');
+      const totalFocusMinutesEl = document.getElementById('totalFocusMinutes');
+
+      // Mode Buttons
+      const modeButtons = {
+        focus: document.getElementById('btnModeFocus'),
+        shortBreak: document.getElementById('btnModeShort'),
+        longBreak: document.getElementById('btnModeLong')
+      };
+
+      function updateModeDurations() {
+        MODES.focus.duration = pomoSettings.focus * 60;
+        MODES.shortBreak.duration = pomoSettings.shortBreak * 60;
+        MODES.longBreak.duration = pomoSettings.longBreak * 60;
+
+        modeButtons.focus.textContent = `Odaklanma (${pomoSettings.focus} dk)`;
+        modeButtons.shortBreak.textContent = `Kısa Mola (${pomoSettings.shortBreak} dk)`;
+        modeButtons.longBreak.textContent = `Uzun Mola (${pomoSettings.longBreak} dk)`;
+      }
+
+      // Circular SVG Progress Math
+      // Radius = 102, Circumference = 2 * PI * r ~= 640.88
+      const RADIUS = 102;
+      const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+      timerProgressCircle.style.strokeDasharray = `${CIRCUMFERENCE}`;
+      timerProgressCircle.style.strokeDashoffset = '0';
+
+      function renderStats() {
+        totalCompletedSessionsEl.textContent = totalCompletedSessionsCount;
+        totalFocusMinutesEl.textContent = totalFocusMinutesCount;
+        cycleLabelEl.textContent = `${currentCycle} / ${pomoSettings.cycles} Seans`;
+
+        // Render dynamic cycle dots based on user's target cycles
+        cycleDotsContainer.innerHTML = '';
+        for (let i = 1; i <= pomoSettings.cycles; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'cycle-dot';
+          if (i < currentCycle) {
+            dot.classList.add('completed');
+          } else if (i === currentCycle) {
+            dot.classList.add('current');
+          }
+          cycleDotsContainer.appendChild(dot);
+        }
+      }
+
+      function updateTimerDisplay() {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        const timeString = `${padZero(minutes)}:${padZero(seconds)}`;
+        timerTimeEl.textContent = timeString;
+
+        // Update document title for background multitasking
+        const modePrefix = currentMode === 'focus' ? '🎯 Odak' : '☕ Mola';
+        document.title = `(${timeString}) ${modePrefix} | Eren'in YKS Hub'ı`;
+
+        // Update Circular SVG Dashoffset
+        const totalDuration = MODES[currentMode].duration;
+        const progressFraction = Math.min(Math.max((totalDuration - timeLeft) / totalDuration, 0), 1);
+        const offset = CIRCUMFERENCE * (1 - progressFraction);
+        timerProgressCircle.style.strokeDashoffset = offset;
+      }
+
+      function setMode(mode, autoStart = false) {
+        pauseTimer();
+        currentMode = mode;
+        timeLeft = MODES[mode].duration;
+        timerModeLabelEl.textContent = MODES[mode].label;
+
+        // Update active tab buttons
+        Object.keys(modeButtons).forEach(key => {
+          modeButtons[key].classList.toggle('active', key === mode);
+        });
+
+        // Set circle color based on mode
+        timerProgressCircle.style.stroke = MODES[mode].color;
+
+        updateTimerDisplay();
+
+        if (autoStart) {
+          startTimer();
+        }
+      }
+
+      function startTimer() {
+        if (isRunning) return;
+        sound.initContext();
+        isRunning = true;
+        playPauseIcon.textContent = '⏸';
+        playPauseText.textContent = 'Duraklat';
+
+        timerInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+          } else {
+            handleSessionComplete();
+          }
+        }, 1000);
+      }
+
+      function pauseTimer() {
+        if (!isRunning) return;
+        isRunning = false;
+        clearInterval(timerInterval);
+        playPauseIcon.textContent = '▶';
+        playPauseText.textContent = 'Başlat';
+      }
+
+      function resetTimer() {
+        pauseTimer();
+        timeLeft = MODES[currentMode].duration;
+        updateTimerDisplay();
+      }
+
+      function handleSessionComplete() {
+        pauseTimer();
+        sound.playChime('success');
+
+        if (currentMode === 'focus') {
+          totalCompletedSessionsCount++;
+          totalFocusMinutesCount += Math.floor(MODES.focus.duration / 60);
+
+          localStorage.setItem('eren_pomo_completed', totalCompletedSessionsCount);
+          localStorage.setItem('eren_pomo_minutes', totalFocusMinutesCount);
+
+          if (currentCycle >= pomoSettings.cycles) {
+            currentCycle = 1;
+            renderStats();
+            alert(`Tebrikler Eren! ${pomoSettings.cycles} seanslık odaklanma döngüsünü tamamladın. Hak ettiğin ${pomoSettings.longBreak} dakikalık uzun molaya geçiliyor.`);
+            setMode('longBreak', true);
+          } else {
+            currentCycle++;
+            renderStats();
+            setMode('shortBreak', true);
+          }
+        } else {
+          // Break finished -> switch to focus
+          renderStats();
+          alert('Mola süren doldu Eren! Sıradaki hedefin için masanın başına geçmeye hazır mısın?');
+          setMode('focus', false);
+        }
+      }
+
+      function skipSession() {
+        pauseTimer();
+        if (confirm('Mevcut seansı atlamak ve sonrakine geçmek istiyor musunuz?')) {
+          if (currentMode === 'focus') {
+            if (currentCycle >= pomoSettings.cycles) {
+              currentCycle = 1;
+              setMode('longBreak');
+            } else {
+              currentCycle++;
+              setMode('shortBreak');
+            }
+          } else {
+            setMode('focus');
+          }
+          renderStats();
+        }
+      }
+
+      // Quick Time Adjusters (+/-)
+      function adjustTime(secondsDelta) {
+        sound.initContext();
+        timeLeft = Math.max(10, timeLeft + secondsDelta);
+        if (timeLeft > MODES[currentMode].duration) {
+          MODES[currentMode].duration = timeLeft;
+        }
+        updateTimerDisplay();
+        sound.playChime('tick');
+      }
+
+      document.getElementById('btnQuickSub5').addEventListener('click', () => adjustTime(-300));
+      document.getElementById('btnQuickSub1').addEventListener('click', () => adjustTime(-60));
+      document.getElementById('btnQuickAdd1').addEventListener('click', () => adjustTime(60));
+      document.getElementById('btnQuickAdd5').addEventListener('click', () => adjustTime(300));
+
+      // Pomodoro Customization Modal Logic
+      const pomoSettingsModal = document.getElementById('pomoSettingsModal');
+      const btnOpenPomoSettings = document.getElementById('btnOpenPomoSettings');
+      const btnCloseModal = document.getElementById('btnCloseModal');
+      const pomoSettingsForm = document.getElementById('pomoSettingsForm');
+      const inputFocusTime = document.getElementById('inputFocusTime');
+      const inputShortBreak = document.getElementById('inputShortBreak');
+      const inputLongBreak = document.getElementById('inputLongBreak');
+      const inputCycles = document.getElementById('inputCycles');
+      const btnResetDefaultSettings = document.getElementById('btnResetDefaultSettings');
+
+      function syncModalInputs() {
+        inputFocusTime.value = pomoSettings.focus;
+        inputShortBreak.value = pomoSettings.shortBreak;
+        inputLongBreak.value = pomoSettings.longBreak;
+        inputCycles.value = pomoSettings.cycles;
+      }
+
+      function openSettingsModal() {
+        syncModalInputs();
+        pomoSettingsModal.classList.add('active');
+      }
+
+      function closeSettingsModal() {
+        pomoSettingsModal.classList.remove('active');
+      }
+
+      btnOpenPomoSettings.addEventListener('click', openSettingsModal);
+      btnCloseModal.addEventListener('click', closeSettingsModal);
+      pomoSettingsModal.addEventListener('click', (e) => {
+        if (e.target === pomoSettingsModal) closeSettingsModal();
+      });
+
+      // Quick Presets
+      const PRESETS = {
+        classic: { focus: 25, shortBreak: 5, longBreak: 15, cycles: 4 },
+        deep: { focus: 50, shortBreak: 10, longBreak: 25, cycles: 4 },
+        exam: { focus: 40, shortBreak: 10, longBreak: 20, cycles: 3 },
+        sprint: { focus: 15, shortBreak: 3, longBreak: 10, cycles: 4 }
+      };
+
+      document.querySelectorAll('.preset-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const presetKey = chip.getAttribute('data-preset');
+          const p = PRESETS[presetKey];
+          if (p) {
+            inputFocusTime.value = p.focus;
+            inputShortBreak.value = p.shortBreak;
+            inputLongBreak.value = p.longBreak;
+            inputCycles.value = p.cycles;
+          }
+        });
+      });
+
+      btnResetDefaultSettings.addEventListener('click', () => {
+        inputFocusTime.value = DEFAULT_POMO_SETTINGS.focus;
+        inputShortBreak.value = DEFAULT_POMO_SETTINGS.shortBreak;
+        inputLongBreak.value = DEFAULT_POMO_SETTINGS.longBreak;
+        inputCycles.value = DEFAULT_POMO_SETTINGS.cycles;
+      });
+
+      pomoSettingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const focusVal = Math.max(1, parseInt(inputFocusTime.value, 10) || 25);
+        const shortVal = Math.max(1, parseInt(inputShortBreak.value, 10) || 5);
+        const longVal = Math.max(1, parseInt(inputLongBreak.value, 10) || 15);
+        const cyclesVal = Math.max(1, parseInt(inputCycles.value, 10) || 4);
+
+        pomoSettings = {
+          focus: focusVal,
+          shortBreak: shortVal,
+          longBreak: longVal,
+          cycles: cyclesVal
+        };
+
+        localStorage.setItem('eren_pomo_settings', JSON.stringify(pomoSettings));
+        updateModeDurations();
+
+        if (currentCycle > pomoSettings.cycles) {
+          currentCycle = 1;
+        }
+
+        renderStats();
+
+        // If timer is not running, update current display with new duration
+        if (!isRunning) {
+          timeLeft = MODES[currentMode].duration;
+          updateTimerDisplay();
+        }
+
+        closeSettingsModal();
+        sound.playChime('tick');
+      });
+
+      // Event listeners for Pomodoro controls
+      btnStartPause.addEventListener('click', () => {
+        if (isRunning) {
+          pauseTimer();
+        } else {
+          startTimer();
+        }
+      });
+
+      btnReset.addEventListener('click', resetTimer);
+      btnSkip.addEventListener('click', skipSession);
+
+      Object.keys(modeButtons).forEach(key => {
+        modeButtons[key].addEventListener('click', () => {
+          setMode(key);
+        });
+      });
+
+      // Initial Pomodoro render
+      updateModeDurations();
+      renderStats();
+      setMode('focus');
+
+      /* ==========================================================================
+         5. Daily Study Task Checklist with LocalStorage Persistence
+         ========================================================================== */
+      const taskForm = document.getElementById('taskForm');
+      const taskInput = document.getElementById('taskInput');
+      const tasksList = document.getElementById('tasksList');
+      const taskStatsEl = document.getElementById('taskStats');
+
+      const DEFAULT_TASKS = [
+        { id: 1, text: 'TYT Matematik: Problemler (25 Soru)', done: false },
+        { id: 2, text: 'AYT Edebiyat: Tanzimat Dönemi Özet Notu', done: false },
+        { id: 3, text: 'YBS Araştırması: Yazılım & İş Analistliği Kariyeri', done: true }
+      ];
+
+      let tasks = JSON.parse(localStorage.getItem('eren_study_tasks') || 'null');
+      if (!tasks) {
+        tasks = DEFAULT_TASKS;
+        localStorage.setItem('eren_study_tasks', JSON.stringify(tasks));
+      }
+
+      function saveAndRenderTasks() {
+        localStorage.setItem('eren_study_tasks', JSON.stringify(tasks));
+        tasksList.innerHTML = '';
+
+        const completedCount = tasks.filter(t => t.done).length;
+        taskStatsEl.textContent = `${completedCount}/${tasks.length}`;
+
+        if (tasks.length === 0) {
+          tasksList.innerHTML = `<li style="text-align: center; color: var(--text-dim); font-size: 0.85rem; padding: 1rem;">Henüz bir görev eklenmedi.</li>`;
+          return;
+        }
+
+        tasks.forEach(task => {
+          const li = document.createElement('li');
+          li.className = `task-item ${task.done ? 'completed' : ''}`;
+
+          const leftDiv = document.createElement('div');
+          leftDiv.className = 'task-left';
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.className = 'task-checkbox';
+          checkbox.checked = task.done;
+
+          const span = document.createElement('span');
+          span.className = 'task-text';
+          span.textContent = task.text;
+
+          leftDiv.appendChild(checkbox);
+          leftDiv.appendChild(span);
+
+          // Delete button
+          const delBtn = document.createElement('button');
+          delBtn.className = 'task-del-btn';
+          delBtn.innerHTML = '&times;';
+          delBtn.title = 'Sil';
+
+          // Events
+          leftDiv.addEventListener('click', (e) => {
+            if (e.target !== checkbox) {
+              checkbox.checked = !checkbox.checked;
+            }
+            task.done = checkbox.checked;
+            sound.playChime('tick');
+            saveAndRenderTasks();
+          });
+
+          delBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            tasks = tasks.filter(t => t.id !== task.id);
+            saveAndRenderTasks();
+          });
+
+          li.appendChild(leftDiv);
+          li.appendChild(delBtn);
+          tasksList.appendChild(li);
+        });
+      }
+
+      taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = taskInput.value.trim();
+        if (!text) return;
+
+        tasks.push({
+          id: Date.now(),
+          text: text,
+          done: false
+        });
+
+        taskInput.value = '';
+        saveAndRenderTasks();
+      });
+
+      saveAndRenderTasks();
+
+      /* ==========================================================================
+         6. Dynamic Motivational Quotes Rotator
+         ========================================================================== */
+      const quotes = [
+        '"Büyük hedefler, her gün atılan kararlı ve küçük adımlarla inşa edilir."',
+        '"Geleceğin Yönetim Bilişim Sistemleri lideri bugün masasının başında yetişiyor."',
+        '"Disiplin, hedefin ile başarın arasındaki köprüdür."',
+        '"YKS 2027 bir yarış değil, potansiyelini zirveye taşıma maratonudur."',
+        '"Kod yazarken de, soru çözerken de odaklanmış bir zihni hiçbir şey durduramaz."'
+      ];
+
+      const motivationalQuoteEl = document.getElementById('motivationalQuote');
+      let quoteIdx = 0;
+      setInterval(() => {
+        quoteIdx = (quoteIdx + 1) % quotes.length;
+        motivationalQuoteEl.style.opacity = '0';
+        setTimeout(() => {
+          motivationalQuoteEl.textContent = quotes[quoteIdx];
+          motivationalQuoteEl.style.opacity = '1';
+        }, 300);
+      }, 12000);
+
+    });
+  </script>
+</body>
+</html>
