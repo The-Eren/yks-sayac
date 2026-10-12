@@ -1242,7 +1242,317 @@
       border-color: var(--accent-cyan) !important;
       color: var(--accent-cyan) !important;
     }
+
+    /* ==========================================================================
+       Firebase Auth & Sync Badges
+       ========================================================================== */
+    .auth-btn {
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      color: var(--text-main);
+      padding: 0.55rem 0.85rem;
+      border-radius: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .auth-btn:hover {
+      background: var(--button-hover);
+      border-color: var(--card-border-glow);
+      transform: translateY(-1px);
+    }
+    .user-auth-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+    }
+    .user-auth-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--accent-cyan);
+    }
+    .sync-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .sync-status-badge.offline {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent-amber);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    /* ==========================================================================
+       Ders / Kategori Bazlı Kronometre Sistemi (YPT Tarzı)
+       ========================================================================== */
+    .study-stopwatch-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
+      position: relative;
+    }
+    .stopwatch-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .stopwatch-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .stopwatch-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .active-subject-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-cyan);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulseDot 1.5s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    .today-total-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .today-total-pill strong {
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+    .stopwatch-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .subjects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      width: 100%;
+    }
+    .subject-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+      border-left: 4px solid var(--sub-color, var(--accent-cyan));
+    }
+    .subject-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--card-border-glow);
+    }
+    .subject-card.is-active {
+      border-color: var(--sub-color, var(--accent-cyan));
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.25);
+    }
+    .subject-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .subject-info {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .subject-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .subject-name {
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+    .subject-timer-display {
+      font-family: var(--font-mono);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1;
+      margin: 0.15rem 0;
+    }
+    .subject-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 0.75rem;
+    }
+    .subject-toggle-btn {
+      flex: 1;
+      padding: 0.55rem 0.85rem;
+      border-radius: 0.65rem;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      color: #ffffff;
+      background: var(--sub-color, var(--accent-cyan));
+    }
+    .subject-toggle-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+    .subject-card.is-active .subject-toggle-btn {
+      background: #e11d48;
+    }
+    .subject-icon-action {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0.35rem 0.45rem;
+      border-radius: 0.4rem;
+      transition: color 0.2s ease;
+    }
+    .subject-icon-action:hover {
+      color: var(--text-main);
+    }
+    .subject-icon-action.del:hover {
+      color: var(--accent-rose);
+    }
+    .color-preset-picker {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .color-swatch-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .color-swatch-btn.selected {
+      border-color: #ffffff;
+      transform: scale(1.15);
+    }
+    .icon-preset-picker {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .icon-swatch-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 0.5rem;
+      background: var(--button-bg);
+      border: 1px solid var(--button-border);
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .icon-swatch-btn.selected {
+      border-color: var(--accent-cyan);
+      background: var(--button-hover);
+      transform: scale(1.1);
+    }
+
+    html.eco-mode .study-stopwatch-section,
+    html.eco-mode .subject-card {
+      background: #111827 !important;
+      box-shadow: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    [data-theme="light"].eco-mode .study-stopwatch-section,
+    [data-theme="light"].eco-mode .subject-card {
+      background: #ffffff !important;
+      box-shadow: none !important;
+      border: 1px solid #cbd5e1 !important;
+    }
   </style>
+
+  <!-- Firebase App & Services (v10 compat CDN - Works Standalone & on GitHub Pages) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -1262,9 +1572,29 @@
       </div>
 
       <div class="nav-actions">
+        <!-- Cloud Sync Badge & Auth -->
+        <span class="sync-status-badge offline" id="syncStatusBadge" title="Bulut Senkronizasyon Durumu">
+          <span id="syncDot">●</span> <span id="syncText">Yerel</span>
+        </span>
+        <button id="btnGoogleAuth" class="auth-btn" title="Google ile Giriş Yap / Senkronize Et">
+          <svg width="15" height="15" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span id="authBtnText">Google Giriş</span>
+        </button>
+        <button id="btnFirebaseConfig" class="auth-btn" title="Firebase Bulut Ayarları" style="gap: 0.35rem;">
+          <span>☁️</span>
+          <span>Bulut Ayarı</span>
+        </button>
         <button id="perfToggle" class="theme-toggle-btn" title="Düşük Sistem / 60 FPS Modu" aria-label="Performans Modu">
           <span>⚡</span>
           <span id="perfText">60 FPS Modu</span>
+        </button>
+        <button id="wakeLockToggle" class="sound-toggle-btn" title="Ekranı Açık Tut (Uyku Önleme)" aria-label="Uyanık Tut">
+          💡
         </button>
         <button id="soundToggle" class="sound-toggle-btn" title="Ses Bildirimi Aç/Kapat" aria-label="Ses">
           🔔
@@ -1334,7 +1664,36 @@
       </div>
     </section>
 
-    <!-- 4. Dashboard Split Grid: Pomodoro & Productivity Tools -->
+    <!-- 4. Ders Bazlı Kronometre Sistemi (YPT Tarzı) -->
+    <section class="study-stopwatch-section glass-card">
+      <div class="stopwatch-header">
+        <div class="stopwatch-title-group">
+          <h3 class="stopwatch-title">
+            <span>⏱️</span> Ders Bazlı Kronometre (YPT Tarzı)
+          </h3>
+          <span class="active-subject-badge" id="activeSubjectBadge" style="display: none;">
+            <span class="pulse-dot"></span> <span id="activeSubjectName">Çalışılıyor</span>
+          </span>
+        </div>
+
+        <div class="stopwatch-actions">
+          <div class="today-total-pill">
+            <span>Bugün Toplam:</span>
+            <strong id="todayTotalStudyTime">00:00:00</strong>
+          </div>
+          <button id="btnOpenAddSubjectModal" class="control-btn btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.82rem;">
+            <span>+</span> <span>Yeni Ders Ekle</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Subjects Grid -->
+      <div class="subjects-grid" id="subjectsGrid">
+        <!-- Dynamic subjects injected by JS -->
+      </div>
+    </section>
+
+    <!-- 5. Dashboard Split Grid: Pomodoro & Productivity Tools -->
     <div class="dashboard-grid">
 
       <!-- Advanced Pomodoro Timer -->
@@ -1543,6 +1902,140 @@
   </div>
 
   <!-- ==========================================================================
+       Yeni Ders Ekle Modal (YPT)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="addSubjectModal" role="dialog" aria-modal="true" aria-labelledby="addSubjectTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="addSubjectTitle">
+          <span>📚</span> Yeni Ders / Kategori Ekle
+        </h3>
+        <button class="modal-close-btn" id="btnCloseAddSubjectModal" aria-label="Kapat">&times;</button>
+      </div>
+
+      <form id="addSubjectForm">
+        <div class="settings-form-grid">
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="inputSubjectName">Ders Adı</label>
+            <input 
+              type="text" 
+              id="inputSubjectName" 
+              class="task-input" 
+              placeholder="Örn: Paragraf, Matematik-2, Tarih..." 
+              maxlength="40" 
+              required 
+              style="margin-top: 0.4rem; width: 100%;"
+            />
+          </div>
+
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label">İkon Seçin</label>
+            <div class="icon-preset-picker" id="iconPickerContainer">
+              <button type="button" class="icon-swatch-btn selected" data-icon="📐">📐</button>
+              <button type="button" class="icon-swatch-btn" data-icon="📖">📖</button>
+              <button type="button" class="icon-swatch-btn" data-icon="📜">📜</button>
+              <button type="button" class="icon-swatch-btn" data-icon="🌍">🌍</button>
+              <button type="button" class="icon-swatch-btn" data-icon="🏛️">🏛️</button>
+              <button type="button" class="icon-swatch-btn" data-icon="🧪">🧪</button>
+              <button type="button" class="icon-swatch-btn" data-icon="💡">💡</button>
+              <button type="button" class="icon-swatch-btn" data-icon="🎯">🎯</button>
+              <button type="button" class="icon-swatch-btn" data-icon="⚡">⚡</button>
+              <button type="button" class="icon-swatch-btn" data-icon="✍️">✍️</button>
+              <button type="button" class="icon-swatch-btn" data-icon="💻">💻</button>
+              <button type="button" class="icon-swatch-btn" data-icon="🧠">🧠</button>
+            </div>
+            <input type="hidden" id="selectedSubjectIcon" value="📐">
+          </div>
+
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label">Ders Rengi</label>
+            <div class="color-preset-picker" id="colorPickerContainer">
+              <button type="button" class="color-swatch-btn selected" data-color="#38bdf8" style="background:#38bdf8;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#6366f1" style="background:#6366f1;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#a855f7" style="background:#a855f7;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#10b981" style="background:#10b981;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#f59e0b" style="background:#f59e0b;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#f43f5e" style="background:#f43f5e;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#f97316" style="background:#f97316;"></button>
+              <button type="button" class="color-swatch-btn" data-color="#06b6d4" style="background:#06b6d4;"></button>
+            </div>
+            <input type="hidden" id="selectedSubjectColor" value="#38bdf8">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="control-btn btn-secondary" id="btnCancelAddSubject">İptal</button>
+          <button type="submit" class="control-btn btn-primary">Dersi Ekle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Firebase Yapılandırma Modal
+       ========================================================================== -->
+  <div class="modal-backdrop" id="firebaseConfigModal" role="dialog" aria-modal="true" aria-labelledby="fbConfigTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title" id="fbConfigTitle">
+          <span>☁️</span> Firebase Bulut Senkronizasyon Ayarları
+        </h3>
+        <button class="modal-close-btn" id="btnCloseFirebaseModal" aria-label="Kapat">&times;</button>
+      </div>
+
+      <div id="fbConfigStatusBanner" style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 0.75rem; padding: 0.7rem 0.85rem; margin-bottom: 1rem; font-size: 0.82rem; line-height: 1.45; color: var(--text-muted);">
+        <strong style="color: var(--text-main); display: block; margin-bottom: 0.2rem;">💡 Senkronizasyon Durumu</strong>
+        <span id="fbModalStatusText">Telefon ve PC arasında verilerini eşitlemek için Firebase Web Uygulaması bilgilerini kaydetmen yeterlidir.</span>
+      </div>
+
+      <!-- Quick Paste Helper Box -->
+      <div style="background: rgba(168, 85, 247, 0.08); border: 1px dashed rgba(168, 85, 247, 0.4); border-radius: 0.85rem; padding: 0.85rem; margin-bottom: 1.25rem;">
+        <label class="setting-label" for="fbQuickPaste" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.35rem;">
+          <span>⚡ Hızlı Yapıştır (Otomatik Doldur)</span>
+          <span style="font-size: 0.72rem; color: var(--accent-purple); font-weight: 700;">Önerilen</span>
+        </label>
+        <textarea id="fbQuickPaste" class="task-input" rows="3" placeholder="Firebase Console'daki `const firebaseConfig = { ... }` kod bloğunu buraya yapıştırın." style="width: 100%; box-sizing: border-box; font-family: var(--font-mono); font-size: 0.76rem; resize: vertical;"></textarea>
+        <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; align-items: center; flex-wrap: wrap;">
+          <button type="button" id="btnAutoParseConfig" class="control-btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+            📋 Kodu Ayrıştır ve Doldur
+          </button>
+          <span id="autoParseFeedback" style="font-size: 0.75rem; color: var(--accent-emerald); display: none; font-weight: 600;">✓ Bilgiler başarıyla ayrıştırıldı!</span>
+        </div>
+      </div>
+
+      <form id="firebaseConfigForm">
+        <div class="settings-form-grid">
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="fbApiKey">API Key</label>
+            <input type="text" id="fbApiKey" class="task-input" placeholder="AIzaSy..." style="margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.8rem;">
+          </div>
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="fbAuthDomain">Auth Domain</label>
+            <input type="text" id="fbAuthDomain" class="task-input" placeholder="proje-id.firebaseapp.com" style="margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.8rem;">
+          </div>
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="fbProjectId">Project ID</label>
+            <input type="text" id="fbProjectId" class="task-input" placeholder="proje-id" style="margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.8rem;">
+          </div>
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="fbStorageBucket">Storage Bucket (İsteğe bağlı)</label>
+            <input type="text" id="fbStorageBucket" class="task-input" placeholder="proje-id.appspot.com" style="margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.8rem;">
+          </div>
+          <div class="setting-item" style="flex-direction: column; align-items: stretch;">
+            <label class="setting-label" for="fbAppId">App ID</label>
+            <input type="text" id="fbAppId" class="task-input" placeholder="1:123456789:web:abcdef..." style="margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.8rem;">
+          </div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 1rem;">
+          <button type="button" class="control-btn btn-secondary" id="btnClearFirebaseConfig">Sıfırla</button>
+          <button type="submit" class="control-btn btn-primary">Kaydet & Bağlan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
        Pure Vanilla JavaScript Application Logic
        ========================================================================== -->
   <script>
@@ -1619,6 +2112,137 @@
         soundToggleBtn.textContent = isEnabled ? '🔔' : '🔕';
         soundToggleBtn.style.opacity = isEnabled ? '1' : '0.5';
       });
+
+      /* ==========================================================================
+         1.1 Screen Wake Lock & Background Notification Manager
+         ========================================================================== */
+      class BackgroundManager {
+        constructor() {
+          this.wakeLock = null;
+          this.wakeLockEnabled = true;
+        }
+
+        async requestWakeLock() {
+          if (!('wakeLock' in navigator) || !this.wakeLockEnabled) return;
+          try {
+            if (!this.wakeLock) {
+              this.wakeLock = await navigator.wakeLock.request('screen');
+              this.wakeLock.addEventListener('release', () => {
+                this.wakeLock = null;
+                this.updateWakeLockUI();
+              });
+              this.updateWakeLockUI();
+            }
+          } catch (err) {
+            console.warn('Wake Lock isteği reddedildi/desteklenmiyor:', err);
+          }
+        }
+
+        async releaseWakeLock() {
+          if (this.wakeLock) {
+            try {
+              await this.wakeLock.release();
+            } catch (e) {}
+            this.wakeLock = null;
+            this.updateWakeLockUI();
+          }
+        }
+
+        updateWakeLockUI() {
+          const btn = document.getElementById('wakeLockToggle');
+          if (!btn) return;
+          if (this.wakeLock) {
+            btn.style.opacity = '1';
+            btn.textContent = '💡';
+            btn.title = 'Ekran Uyanık Tutuluyor (Kapanmaz)';
+          } else {
+            btn.style.opacity = '0.55';
+            btn.textContent = '💤';
+            btn.title = 'Ekran Normal Uyku Modunda (Tıklayarak Aç)';
+          }
+        }
+
+        toggleWakeLockPreference() {
+          this.wakeLockEnabled = !this.wakeLockEnabled;
+          if (!this.wakeLockEnabled) {
+            this.releaseWakeLock();
+          } else {
+            const hasActiveTimer = (typeof isRunning !== 'undefined' && isRunning) || (typeof activeSubjectId !== 'undefined' && activeSubjectId);
+            if (hasActiveTimer) {
+              this.requestWakeLock();
+            }
+          }
+          this.updateWakeLockUI();
+        }
+
+        requestNotificationPermission() {
+          if ('Notification' in window && Notification.permission === 'default') {
+            try {
+              Notification.requestPermission();
+            } catch (e) {}
+          }
+        }
+
+        sendNotification(title, body) {
+          // 1. Mobile Vibration (distinct study completion pattern)
+          if ('vibrate' in navigator) {
+            try {
+              navigator.vibrate([400, 200, 400, 200, 600]);
+            } catch (e) {}
+          }
+
+          // 2. Web System Notification
+          if ('Notification' in window && Notification.permission === 'granted') {
+            try {
+              new Notification(title, {
+                body: body,
+                icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%2338bdf8"/><text x="50" y="65" font-size="50" text-anchor="middle" fill="white">⏱</text></svg>',
+                tag: 'study-hub-alert'
+              });
+            } catch (e) {
+              console.warn('Bildirim gönderilemedi:', e);
+            }
+          }
+        }
+      }
+
+      const bgManager = new BackgroundManager();
+
+      // Web Worker Background Ticker (Keeps timers synchronized while on YouTube or other apps)
+      let bgWorker = null;
+      try {
+        const workerBlob = new Blob([`
+          let tickInterval = null;
+          self.onmessage = function(e) {
+            if (e.data === 'start') {
+              if (!tickInterval) {
+                tickInterval = setInterval(() => { self.postMessage('tick'); }, 1000);
+              }
+            } else if (e.data === 'stop') {
+              if (tickInterval) {
+                clearInterval(tickInterval);
+                tickInterval = null;
+              }
+            }
+          };
+        `], { type: 'application/javascript' });
+        bgWorker = new Worker(URL.createObjectURL(workerBlob));
+        bgWorker.onmessage = () => {
+          if (typeof syncAllTimers === 'function') {
+            syncAllTimers();
+          }
+        };
+      } catch (workerErr) {
+        console.warn('Web Worker background ticker init ignored:', workerErr);
+      }
+
+      const wakeLockToggleBtn = document.getElementById('wakeLockToggle');
+      if (wakeLockToggleBtn) {
+        wakeLockToggleBtn.addEventListener('click', () => {
+          bgManager.toggleWakeLockPreference();
+          sound.playChime('tick');
+        });
+      }
 
       /* ==========================================================================
          2. Theme & Performance Mode (Low-Spec PC Optimization)
@@ -1782,6 +2406,7 @@
       let currentMode = 'focus';
       let timeLeft = MODES[currentMode].duration;
       let timerInterval = null;
+      let pomoTargetEndTime = null;
       let isRunning = false;
       let currentCycle = 1;
       let totalCompletedSessionsCount = parseInt(localStorage.getItem('eren_pomo_completed') || '0', 10);
@@ -1882,18 +2507,34 @@
         }
       }
 
-      function startTimer() {
-        if (isRunning) return;
+      function startTimer(isResume = false) {
+        if (isRunning && !isResume) return;
         sound.initContext();
+        bgManager.requestWakeLock();
+        bgManager.requestNotificationPermission();
+
         isRunning = true;
+        if (!isResume || !pomoTargetEndTime) {
+          pomoTargetEndTime = Date.now() + (timeLeft * 1000);
+        }
+
+        localStorage.setItem('eren_pomo_target_end', pomoTargetEndTime);
+        localStorage.setItem('eren_pomo_mode', currentMode);
+        localStorage.setItem('eren_pomo_is_running', 'true');
+
+        if (bgWorker) bgWorker.postMessage('start');
+
         playPauseIcon.textContent = '⏸';
         playPauseText.textContent = 'Duraklat';
 
+        clearInterval(timerInterval);
         timerInterval = setInterval(() => {
-          if (timeLeft > 0) {
-            timeLeft--;
-            updateTimerDisplay();
-          } else {
+          const now = Date.now();
+          const remaining = Math.max(0, Math.ceil((pomoTargetEndTime - now) / 1000));
+          timeLeft = remaining;
+          updateTimerDisplay();
+
+          if (remaining <= 0) {
             handleSessionComplete();
           }
         }, 1000);
@@ -1901,10 +2542,25 @@
 
       function pauseTimer() {
         if (!isRunning) return;
+        if (pomoTargetEndTime) {
+          timeLeft = Math.max(0, Math.ceil((pomoTargetEndTime - Date.now()) / 1000));
+        }
         isRunning = false;
+        pomoTargetEndTime = null;
         clearInterval(timerInterval);
+        timerInterval = null;
+
+        localStorage.removeItem('eren_pomo_target_end');
+        localStorage.setItem('eren_pomo_is_running', 'false');
+
         playPauseIcon.textContent = '▶';
         playPauseText.textContent = 'Başlat';
+
+        // Release wake lock and worker if no subject stopwatch is running
+        if (!activeSubjectId) {
+          bgManager.releaseWakeLock();
+          if (bgWorker) bgWorker.postMessage('stop');
+        }
       }
 
       function resetTimer() {
@@ -1924,10 +2580,18 @@
           localStorage.setItem('eren_pomo_completed', totalCompletedSessionsCount);
           localStorage.setItem('eren_pomo_minutes', totalFocusMinutesCount);
 
+          bgManager.sendNotification(
+            'Tebrikler Eren! Seans Tamamlandı 🎉',
+            `${pomoSettings.focus} dakikalık odaklanma seansını başarıyla bitirdin. Şimdi mola zamanı!`
+          );
+
           if (currentCycle >= pomoSettings.cycles) {
             currentCycle = 1;
             renderStats();
-            alert(`Tebrikler Eren! ${pomoSettings.cycles} seanslık odaklanma döngüsünü tamamladın. Hak ettiğin ${pomoSettings.longBreak} dakikalık uzun molaya geçiliyor.`);
+            const msg = `Tebrikler Eren! ${pomoSettings.cycles} seanslık odaklanma döngüsünü tamamladın. Hak ettiğin ${pomoSettings.longBreak} dakikalık uzun molaya geçiliyor.`;
+            if (!document.hidden) {
+              alert(msg);
+            }
             setMode('longBreak', true);
           } else {
             currentCycle++;
@@ -1937,7 +2601,13 @@
         } else {
           // Break finished -> switch to focus
           renderStats();
-          alert('Mola süren doldu Eren! Sıradaki hedefin için masanın başına geçmeye hazır mısın?');
+          bgManager.sendNotification(
+            'Mola Süren Doldu Eren! ⏰',
+            'Sıradaki hedefin için masanın başına geçmeye hazır mısın?'
+          );
+          if (!document.hidden) {
+            alert('Mola süren doldu Eren! Sıradaki hedefin için masanın başına geçmeye hazır mısın?');
+          }
           setMode('focus', false);
         }
       }
@@ -1966,6 +2636,10 @@
         timeLeft = Math.max(10, timeLeft + secondsDelta);
         if (timeLeft > MODES[currentMode].duration) {
           MODES[currentMode].duration = timeLeft;
+        }
+        if (isRunning) {
+          pomoTargetEndTime = Date.now() + (timeLeft * 1000);
+          localStorage.setItem('eren_pomo_target_end', pomoTargetEndTime);
         }
         updateTimerDisplay();
         sound.playChime('tick');
@@ -2094,7 +2768,7 @@
       setMode('focus');
 
       /* ==========================================================================
-         5. Daily Study Task Checklist with LocalStorage Persistence
+         5. Daily Study Task Checklist with LocalStorage & Cloud Sync
          ========================================================================== */
       const taskForm = document.getElementById('taskForm');
       const taskInput = document.getElementById('taskInput');
@@ -2108,7 +2782,7 @@
       ];
 
       let tasks = JSON.parse(localStorage.getItem('eren_study_tasks') || 'null');
-      if (!tasks) {
+      if (!tasks || !Array.isArray(tasks)) {
         tasks = DEFAULT_TASKS;
         localStorage.setItem('eren_study_tasks', JSON.stringify(tasks));
       }
@@ -2158,12 +2832,14 @@
             task.done = checkbox.checked;
             sound.playChime('tick');
             saveAndRenderTasks();
+            triggerCloudSync();
           });
 
           delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             tasks = tasks.filter(t => t.id !== task.id);
             saveAndRenderTasks();
+            triggerCloudSync();
           });
 
           li.appendChild(leftDiv);
@@ -2185,12 +2861,832 @@
 
         taskInput.value = '';
         saveAndRenderTasks();
+        triggerCloudSync();
       });
 
       saveAndRenderTasks();
 
       /* ==========================================================================
-         6. Dynamic Motivational Quotes Rotator
+         6. Ders / Kategori Bazlı Kronometre Sistemi (YPT Tarzı)
+         ========================================================================== */
+      const DEFAULT_SUBJECTS = [
+        { id: 'sub_tyt_turkce', name: 'TYT Türkçe & Paragraf', icon: '📖', color: '#f43f5e', seconds: 0 },
+        { id: 'sub_tyt_mat', name: 'TYT Temel Matematik', icon: '📐', color: '#38bdf8', seconds: 0 },
+        { id: 'sub_tyt_geo', name: 'TYT Geometri', icon: '📏', color: '#06b6d4', seconds: 0 },
+        { id: 'sub_tyt_tarih', name: 'TYT Tarih', icon: '🏛️', color: '#f59e0b', seconds: 0 },
+        { id: 'sub_tyt_cog', name: 'TYT Coğrafya', icon: '🌍', color: '#10b981', seconds: 0 },
+        { id: 'sub_tyt_fel', name: 'TYT Felsefe', icon: '💡', color: '#8b5cf6', seconds: 0 },
+        { id: 'sub_tyt_din', name: 'TYT Din Kültürü', icon: '🕌', color: '#14b8a6', seconds: 0 },
+        { id: 'sub_ayt_edeb', name: 'AYT Edebiyat', icon: '📜', color: '#a855f7', seconds: 0 },
+        { id: 'sub_ayt_mat', name: 'AYT Matematik', icon: '🔢', color: '#6366f1', seconds: 0 },
+        { id: 'sub_ayt_geo', name: 'AYT Geometri', icon: '📐', color: '#3b82f6', seconds: 0 },
+        { id: 'sub_ayt_tarih', name: 'AYT Tarih-1', icon: '⚔️', color: '#ea580c', seconds: 0 },
+        { id: 'sub_ayt_cog', name: 'AYT Coğrafya-1', icon: '🗺️', color: '#059669', seconds: 0 },
+        { id: 'sub_deneme', name: 'TYT & AYT Deneme', icon: '🎯', color: '#ec4899', seconds: 0 }
+      ];
+
+      let subjects = JSON.parse(localStorage.getItem('eren_study_subjects') || 'null');
+      if (!subjects || !Array.isArray(subjects) || subjects.length < 10) {
+        // Upgrade to full EA curriculum while preserving any existing study time
+        const existingSecondsMap = {};
+        if (Array.isArray(subjects)) {
+          subjects.forEach(s => {
+            if (s.name) existingSecondsMap[s.name.toLowerCase().trim()] = s.seconds || 0;
+            if (s.id) existingSecondsMap[s.id] = s.seconds || 0;
+          });
+        }
+        subjects = DEFAULT_SUBJECTS.map(def => {
+          const matchedSeconds = existingSecondsMap[def.id] || existingSecondsMap[def.name.toLowerCase().trim()] || 0;
+          return { ...def, seconds: matchedSeconds };
+        });
+        localStorage.setItem('eren_study_subjects', JSON.stringify(subjects));
+      }
+
+      let activeSubjectId = null;
+      let subjectTimerInterval = null;
+      let activeSubStartTime = null;
+      let activeSubBaseSeconds = 0;
+
+      const subjectsGrid = document.getElementById('subjectsGrid');
+      const todayTotalStudyTimeEl = document.getElementById('todayTotalStudyTime');
+      const activeSubjectBadge = document.getElementById('activeSubjectBadge');
+      const activeSubjectNameEl = document.getElementById('activeSubjectName');
+
+      function formatStopwatch(totalSeconds) {
+        const sec = Math.max(0, parseInt(totalSeconds, 10) || 0);
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        const s = sec % 60;
+        return `${padZero(h)}:${padZero(m)}:${padZero(s)}`;
+      }
+
+      function updateTodayTotalDisplay() {
+        const totalSec = subjects.reduce((acc, sub) => acc + (sub.seconds || 0), 0);
+        todayTotalStudyTimeEl.textContent = formatStopwatch(totalSec);
+      }
+
+      function saveSubjects() {
+        localStorage.setItem('eren_study_subjects', JSON.stringify(subjects));
+      }
+
+      function renderSubjects() {
+        subjectsGrid.innerHTML = '';
+        updateTodayTotalDisplay();
+
+        subjects.forEach(sub => {
+          const card = document.createElement('div');
+          card.className = `subject-card ${activeSubjectId === sub.id ? 'is-active' : ''}`;
+          card.style.setProperty('--sub-color', sub.color || '#38bdf8');
+          card.id = `card_${sub.id}`;
+
+          card.innerHTML = `
+            <div class="subject-top">
+              <div class="subject-info">
+                <div class="subject-icon-box" style="border-color:${sub.color}33;">${sub.icon || '📚'}</div>
+                <div class="subject-name">${sub.name}</div>
+              </div>
+              <div style="display: flex; gap: 0.15rem;">
+                <button class="subject-icon-action" data-action="reset" data-id="${sub.id}" title="Süreyi Sıfırla">↺</button>
+                <button class="subject-icon-action del" data-action="delete" data-id="${sub.id}" title="Dersi Sil">🗑️</button>
+              </div>
+            </div>
+
+            <div class="subject-timer-display" id="time_${sub.id}">
+              ${formatStopwatch(sub.seconds || 0)}
+            </div>
+
+            <div class="subject-controls">
+              <button class="subject-toggle-btn" data-action="toggle" data-id="${sub.id}">
+                <span class="subject-btn-icon">${activeSubjectId === sub.id ? '⏸' : '▶'}</span>
+                <span>${activeSubjectId === sub.id ? 'Durdur' : 'Başlat'}</span>
+              </button>
+            </div>
+          `;
+
+          subjectsGrid.appendChild(card);
+        });
+
+        // Header active badge
+        if (activeSubjectId) {
+          const cur = subjects.find(s => s.id === activeSubjectId);
+          if (cur) {
+            activeSubjectBadge.style.display = 'inline-flex';
+            activeSubjectNameEl.textContent = `Çalışılıyor: ${cur.name}`;
+          }
+        } else {
+          activeSubjectBadge.style.display = 'none';
+        }
+      }
+
+      function stopActiveSubject(silent = false) {
+        if (!activeSubjectId) return;
+
+        if (activeSubStartTime) {
+          const sub = subjects.find(s => s.id === activeSubjectId);
+          if (sub) {
+            const elapsed = Math.floor((Date.now() - activeSubStartTime) / 1000);
+            sub.seconds = Math.max(0, activeSubBaseSeconds + elapsed);
+          }
+        }
+
+        clearInterval(subjectTimerInterval);
+        subjectTimerInterval = null;
+        activeSubjectId = null;
+        activeSubStartTime = null;
+        activeSubBaseSeconds = 0;
+
+        localStorage.removeItem('eren_active_sub_id');
+        localStorage.removeItem('eren_active_sub_start_time');
+        localStorage.removeItem('eren_active_sub_base_seconds');
+
+        // Release wake lock and background worker if Pomodoro is not currently running
+        if (!isRunning) {
+          bgManager.releaseWakeLock();
+          if (bgWorker) bgWorker.postMessage('stop');
+          document.title = "Eren'in YKS Hub'ı | YBS Hedefi";
+        }
+
+        if (!silent) {
+          renderSubjects();
+          saveSubjects();
+          triggerCloudSync();
+        }
+      }
+
+      function startSubjectTimer(subId, isResume = false) {
+        sound.initContext();
+        bgManager.requestWakeLock();
+
+        // If another subject is running, stop it first!
+        if (activeSubjectId && activeSubjectId !== subId) {
+          stopActiveSubject(true);
+        }
+
+        const sub = subjects.find(s => s.id === subId);
+        if (!sub) return;
+
+        activeSubjectId = subId;
+
+        if (!isResume) {
+          activeSubBaseSeconds = sub.seconds || 0;
+          activeSubStartTime = Date.now();
+        }
+
+        localStorage.setItem('eren_active_sub_id', activeSubjectId);
+        localStorage.setItem('eren_active_sub_start_time', activeSubStartTime);
+        localStorage.setItem('eren_active_sub_base_seconds', activeSubBaseSeconds);
+
+        if (bgWorker) bgWorker.postMessage('start');
+
+        renderSubjects();
+        if (!isResume) {
+          sound.playChime('tick');
+        }
+
+        let tickCounter = 0;
+        clearInterval(subjectTimerInterval);
+        subjectTimerInterval = setInterval(() => {
+          const elapsed = Math.floor((Date.now() - activeSubStartTime) / 1000);
+          sub.seconds = Math.max(0, activeSubBaseSeconds + elapsed);
+
+          // Direct DOM update for 60 FPS buttery smoothness
+          const timerEl = document.getElementById(`time_${subId}`);
+          if (timerEl) {
+            timerEl.textContent = formatStopwatch(sub.seconds);
+          }
+          updateTodayTotalDisplay();
+
+          // Update tab title live so Eren can see his timer while watching YouTube
+          if (!isRunning) {
+            document.title = `(${formatStopwatch(sub.seconds)}) ${sub.icon || '⏱️'} ${sub.name} | Eren'in YKS Hub'ı`;
+          }
+
+          tickCounter++;
+          // Save every 5 seconds to reduce storage writes
+          if (tickCounter % 5 === 0) {
+            saveSubjects();
+            triggerCloudSync();
+          }
+        }, 1000);
+      }
+
+      function toggleSubject(subId) {
+        if (activeSubjectId === subId) {
+          stopActiveSubject(false);
+          sound.playChime('tick');
+        } else {
+          startSubjectTimer(subId);
+        }
+      }
+
+      // Subject actions delegation
+      subjectsGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const action = btn.getAttribute('data-action');
+        const id = btn.getAttribute('data-id');
+
+        if (action === 'toggle') {
+          toggleSubject(id);
+        } else if (action === 'reset') {
+          const sub = subjects.find(s => s.id === id);
+          if (sub && confirm(`"${sub.name}" dersinin süresini sıfırlamak istiyor musunuz?`)) {
+            if (activeSubjectId === id) stopActiveSubject(true);
+            sub.seconds = 0;
+            saveSubjects();
+            renderSubjects();
+            triggerCloudSync();
+          }
+        } else if (action === 'delete') {
+          const sub = subjects.find(s => s.id === id);
+          if (sub && confirm(`"${sub.name}" dersini listeden silmek istiyor musunuz?`)) {
+            if (activeSubjectId === id) stopActiveSubject(true);
+            subjects = subjects.filter(s => s.id !== id);
+            saveSubjects();
+            renderSubjects();
+            triggerCloudSync();
+          }
+        }
+      });
+
+      // Add Subject Modal Controls
+      const addSubjectModal = document.getElementById('addSubjectModal');
+      const btnOpenAddSubjectModal = document.getElementById('btnOpenAddSubjectModal');
+      const btnCloseAddSubjectModal = document.getElementById('btnCloseAddSubjectModal');
+      const btnCancelAddSubject = document.getElementById('btnCancelAddSubject');
+      const addSubjectForm = document.getElementById('addSubjectForm');
+      const inputSubjectName = document.getElementById('inputSubjectName');
+      const selectedSubjectIconInput = document.getElementById('selectedSubjectIcon');
+      const selectedSubjectColorInput = document.getElementById('selectedSubjectColor');
+      const iconPickerContainer = document.getElementById('iconPickerContainer');
+      const colorPickerContainer = document.getElementById('colorPickerContainer');
+
+      btnOpenAddSubjectModal.addEventListener('click', () => {
+        inputSubjectName.value = '';
+        addSubjectModal.classList.add('active');
+        inputSubjectName.focus();
+      });
+
+      function closeAddSubjectModal() {
+        addSubjectModal.classList.remove('active');
+      }
+
+      btnCloseAddSubjectModal.addEventListener('click', closeAddSubjectModal);
+      btnCancelAddSubject.addEventListener('click', closeAddSubjectModal);
+      addSubjectModal.addEventListener('click', (e) => {
+        if (e.target === addSubjectModal) closeAddSubjectModal();
+      });
+
+      iconPickerContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.icon-swatch-btn');
+        if (!btn) return;
+        iconPickerContainer.querySelectorAll('.icon-swatch-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSubjectIconInput.value = btn.getAttribute('data-icon');
+      });
+
+      colorPickerContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.color-swatch-btn');
+        if (!btn) return;
+        colorPickerContainer.querySelectorAll('.color-swatch-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSubjectColorInput.value = btn.getAttribute('data-color');
+      });
+
+      addSubjectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = inputSubjectName.value.trim();
+        if (!name) return;
+
+        const newSub = {
+          id: 'sub_' + Date.now(),
+          name: name,
+          icon: selectedSubjectIconInput.value || '📚',
+          color: selectedSubjectColorInput.value || '#38bdf8',
+          seconds: 0
+        };
+
+        subjects.push(newSub);
+        saveSubjects();
+        renderSubjects();
+        triggerCloudSync();
+        closeAddSubjectModal();
+        sound.playChime('tick');
+      });
+
+      renderSubjects();
+
+      /* ==========================================================================
+         6.1 Background Wake Sync & Session Recovery Engine (Mobile Lockscreen Safe)
+         ========================================================================== */
+      function syncAllTimers() {
+        // 1. Pomodoro synchronization
+        if (isRunning && pomoTargetEndTime) {
+          const now = Date.now();
+          const remaining = Math.max(0, Math.ceil((pomoTargetEndTime - now) / 1000));
+          timeLeft = remaining;
+          updateTimerDisplay();
+
+          if (remaining <= 0) {
+            handleSessionComplete();
+          }
+        }
+
+        // 2. Active Subject stopwatch synchronization
+        if (activeSubjectId && activeSubStartTime) {
+          const sub = subjects.find(s => s.id === activeSubjectId);
+          if (sub) {
+            const elapsed = Math.floor((Date.now() - activeSubStartTime) / 1000);
+            sub.seconds = Math.max(0, activeSubBaseSeconds + elapsed);
+            const timerEl = document.getElementById(`time_${activeSubjectId}`);
+            if (timerEl) {
+              timerEl.textContent = formatStopwatch(sub.seconds);
+            }
+            updateTodayTotalDisplay();
+            saveSubjects();
+
+            if (!isRunning) {
+              document.title = `(${formatStopwatch(sub.seconds)}) ${sub.icon || '⏱️'} ${sub.name} | Eren'in YKS Hub'ı`;
+            }
+          }
+        }
+
+        // 3. YKS countdown update
+        updateCountdown();
+      }
+
+      // Page Visibility & Lifecycle Listeners (Lock Screen & Background Recovery)
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+          syncAllTimers();
+          if ((isRunning || activeSubjectId) && bgManager.wakeLockEnabled) {
+            bgManager.requestWakeLock();
+          }
+        }
+      });
+
+      window.addEventListener('pageshow', () => {
+        syncAllTimers();
+        if ((isRunning || activeSubjectId) && bgManager.wakeLockEnabled) {
+          bgManager.requestWakeLock();
+        }
+      });
+
+      window.addEventListener('focus', () => {
+        syncAllTimers();
+      });
+
+      // Startup Session Recovery from LocalStorage
+      try {
+        // A. Restore Pomodoro if it was running before page reload
+        const savedPomoRunning = localStorage.getItem('eren_pomo_is_running');
+        const savedPomoTargetEnd = localStorage.getItem('eren_pomo_target_end');
+        if (savedPomoRunning === 'true' && savedPomoTargetEnd) {
+          const targetEnd = parseInt(savedPomoTargetEnd, 10);
+          const remaining = Math.ceil((targetEnd - Date.now()) / 1000);
+          if (remaining > 0) {
+            pomoTargetEndTime = targetEnd;
+            timeLeft = remaining;
+            updateTimerDisplay();
+            startTimer(true);
+          } else {
+            timeLeft = 0;
+            updateTimerDisplay();
+            localStorage.removeItem('eren_pomo_target_end');
+            localStorage.setItem('eren_pomo_is_running', 'false');
+          }
+        }
+
+        // B. Restore Subject stopwatch if it was running before page reload
+        const savedActiveSubId = localStorage.getItem('eren_active_sub_id');
+        const savedActiveStartTime = localStorage.getItem('eren_active_sub_start_time');
+        const savedActiveBaseSeconds = localStorage.getItem('eren_active_sub_base_seconds');
+
+        if (savedActiveSubId && savedActiveStartTime) {
+          const sub = subjects.find(s => s.id === savedActiveSubId);
+          if (sub) {
+            activeSubStartTime = parseInt(savedActiveStartTime, 10);
+            activeSubBaseSeconds = parseInt(savedActiveBaseSeconds, 10) || 0;
+            const elapsed = Math.floor((Date.now() - activeSubStartTime) / 1000);
+            sub.seconds = Math.max(0, activeSubBaseSeconds + elapsed);
+            saveSubjects();
+            renderSubjects();
+            startSubjectTimer(savedActiveSubId, true);
+          }
+        }
+      } catch (err) {
+        console.warn('Oturum kurtarma hatası:', err);
+      }
+
+      /* ==========================================================================
+         7. Firebase Authentication & Cloud Firestore Realtime Sync
+         ========================================================================== */
+      let currentUser = null;
+      let firestoreDb = null;
+      let firebaseAuth = null;
+      let isCloudConfigured = false;
+      let syncDebounceTimer = null;
+
+      const btnGoogleAuth = document.getElementById('btnGoogleAuth');
+      const authBtnText = document.getElementById('authBtnText');
+      const syncStatusBadge = document.getElementById('syncStatusBadge');
+      const syncDot = document.getElementById('syncDot');
+      const syncText = document.getElementById('syncText');
+      const btnFirebaseConfig = document.getElementById('btnFirebaseConfig');
+      const firebaseConfigModal = document.getElementById('firebaseConfigModal');
+      const btnCloseFirebaseModal = document.getElementById('btnCloseFirebaseModal');
+      const firebaseConfigForm = document.getElementById('firebaseConfigForm');
+      const btnClearFirebaseConfig = document.getElementById('btnClearFirebaseConfig');
+
+      // Firebase Form Inputs
+      const fbApiKey = document.getElementById('fbApiKey');
+      const fbAuthDomain = document.getElementById('fbAuthDomain');
+      const fbProjectId = document.getElementById('fbProjectId');
+      const fbStorageBucket = document.getElementById('fbStorageBucket');
+      const fbAppId = document.getElementById('fbAppId');
+
+      function setSyncBadge(state, text) {
+        if (state === 'online') {
+          syncStatusBadge.className = 'sync-status-badge';
+          syncDot.textContent = '●';
+          syncText.textContent = text || 'Bulut Aktif';
+        } else {
+          syncStatusBadge.className = 'sync-status-badge offline';
+          syncDot.textContent = '●';
+          syncText.textContent = text || 'Yerel';
+        }
+      }
+
+
+      function translateFirebaseError(err) {
+        if (!err) return 'Bilinmeyen bir hata oluştu.';
+        const code = err.code || '';
+        const msg = err.message || '';
+
+        if (code === 'auth/unauthorized-domain') {
+          return '⚠️ Yetkisiz Alan Adı Hatası (auth/unauthorized-domain)!\n\nÇözüm:\n1. Firebase Console ➔ Authentication ➔ Settings ➔ "Authorized domains" bölümüne gidin.\n2. Sitenizin adresini (örneğin: github.io) ekleyin.\n3. 1-2 dakika sonra tekrar giriş yapmayı deneyin.';
+        }
+        if (code === 'auth/operation-not-allowed') {
+          return '⚠️ Google ile Giriş Kapalı (auth/operation-not-allowed)!\n\nÇözüm:\n1. Firebase Console ➔ Authentication ➔ Sign-in method sayfasına gidin.\n2. Google sağlayıcısını "Etkinleştir" (Enable) yapın.\n3. Proje destek e-postasını seçip kaydedin.';
+        }
+        if (code === 'auth/popup-blocked') {
+          return '⚠️ Tarayıcı Pop-up\'ı Engelledi!\n\nTarayıcınız Google giriş penceresini engelledi. Adres çubuğundaki pop-up engelini kaldırıp tekrar deneyin.';
+        }
+        if (code === 'auth/popup-closed-by-user') {
+          return 'Giriş penceresi kapatıldı.';
+        }
+        if (code === 'auth/invalid-api-key') {
+          return '⚠️ Geçersiz API Key!\n\nLütfen Firebase Bulut Ayarları penceresindeki API Key değerini kontrol ediniz.';
+        }
+        if (code === 'auth/network-request-failed') {
+          return '⚠️ Ağ Bağlantısı Hatası!\n\nİnternet bağlantınızı veya reklam engelleyici (AdBlock) eklentinizin Firebase\'i engelleyip engellemediğini kontrol edin.';
+        }
+        return `Firebase Giriş Hatası (${code || 'Bilinmiyor'}): ${msg}`;
+      }
+
+      function initFirebaseEngine() {
+        const savedConfigStr = localStorage.getItem('eren_firebase_config');
+        let config = null;
+
+        if (savedConfigStr) {
+          try {
+            config = JSON.parse(savedConfigStr);
+          } catch(e) {}
+        }
+
+        if (config && config.apiKey && config.projectId && window.firebase) {
+          try {
+            if (!firebase.apps.length) {
+              firebase.initializeApp(config);
+            }
+            firebaseAuth = firebase.auth();
+            firestoreDb = firebase.firestore();
+            isCloudConfigured = true;
+
+            // Auth State Observer
+            firebaseAuth.onAuthStateChanged(user => {
+              currentUser = user;
+              updateAuthUI(user);
+              if (user) {
+                loadCloudData(user);
+              }
+            });
+
+            // Mobile Redirect Result Check
+            firebaseAuth.getRedirectResult().then(result => {
+              if (result && result.user) {
+                currentUser = result.user;
+                updateAuthUI(currentUser);
+                loadCloudData(currentUser);
+              }
+            }).catch(redirectErr => {
+              if (redirectErr.code && redirectErr.code !== 'auth/null-user') {
+                console.warn('Redirect sign-in error:', redirectErr);
+                alert(translateFirebaseError(redirectErr));
+              }
+            });
+
+            setSyncBadge('offline', 'Hazır (Giriş Yapılmadı)');
+          } catch (err) {
+            console.warn('Firebase init error:', err);
+            setSyncBadge('offline', 'Firebase Hatası');
+          }
+        } else {
+          setSyncBadge('offline', 'Yerel Depolama');
+        }
+      }
+
+      function updateAuthUI(user) {
+        if (user) {
+          const firstName = (user.displayName || 'Kullanıcı').split(' ')[0];
+          btnGoogleAuth.innerHTML = `
+            ${user.photoURL ? `<img src="${user.photoURL}" class="user-auth-avatar" alt="Avatar">` : '👤'}
+            <span>${firstName} (Çıkış)</span>
+          `;
+          setSyncBadge('online', 'Bulut Senkron');
+        } else {
+          btnGoogleAuth.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Google Giriş</span>
+          `;
+          setSyncBadge('offline', 'Yerel');
+        }
+      }
+
+      async function handleGoogleAuthClick() {
+        if (!isCloudConfigured) {
+          openFirebaseConfigModal();
+          return;
+        }
+
+        if (currentUser) {
+          if (confirm('Google hesabınızdan çıkış yapmak istiyor musunuz?')) {
+            try {
+              await firebaseAuth.signOut();
+              sound.playChime('tick');
+            } catch (e) {
+              console.error('Sign out error:', e);
+              alert(translateFirebaseError(e));
+            }
+          }
+        } else {
+          try {
+            sound.initContext();
+            const provider = new firebase.auth.GoogleAuthProvider();
+            provider.setCustomParameters({ prompt: 'select_account' });
+
+            try {
+              await firebaseAuth.signInWithPopup(provider);
+              sound.playChime('success');
+            } catch (popupErr) {
+              if (popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/popup-closed-by-user' || /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+                console.log('Pop-up engellendi veya mobil cihaz tespit edildi, yönlendirme moduna geçiliyor...');
+                await firebaseAuth.signInWithRedirect(provider);
+                return;
+              }
+              throw popupErr;
+            }
+          } catch (e) {
+            console.error('Sign in error:', e);
+            if (e.code !== 'auth/popup-closed-by-user') {
+              alert(translateFirebaseError(e));
+            }
+          }
+        }
+      }
+
+      btnGoogleAuth.addEventListener('click', handleGoogleAuthClick);
+
+      // Cloud Firestore Data Loading
+      async function loadCloudData(user) {
+        if (!firestoreDb || !user) return;
+        try {
+          const userDocRef = firestoreDb.collection('study_users').doc(user.uid);
+          const docSnap = await userDocRef.get();
+
+          if (docSnap.exists) {
+            const data = docSnap.data();
+
+            // Load subjects
+            if (data.subjects && Array.isArray(data.subjects) && data.subjects.length) {
+              subjects = data.subjects;
+              saveSubjects();
+              renderSubjects();
+            }
+
+            // Load tasks
+            if (data.tasks && Array.isArray(data.tasks)) {
+              tasks = data.tasks;
+              saveAndRenderTasks();
+            }
+
+            // Load pomo settings & stats
+            if (data.pomoSettings) {
+              pomoSettings = { ...pomoSettings, ...data.pomoSettings };
+              localStorage.setItem('eren_pomo_settings', JSON.stringify(pomoSettings));
+              updateModeDurations();
+            }
+
+            if (data.pomoStats) {
+              totalCompletedSessionsCount = data.pomoStats.completed || totalCompletedSessionsCount;
+              totalFocusMinutesCount = data.pomoStats.minutes || totalFocusMinutesCount;
+              localStorage.setItem('eren_pomo_completed', totalCompletedSessionsCount);
+              localStorage.setItem('eren_pomo_minutes', totalFocusMinutesCount);
+              renderStats();
+            }
+
+            setSyncBadge('online', 'Eşitlendi');
+          } else {
+            // First time: upload local data to user's new cloud document
+            triggerCloudSync(true);
+          }
+        } catch (e) {
+          console.error('Error loading cloud data:', e);
+          setSyncBadge('offline', 'Senkron Hatası');
+        }
+      }
+
+      function triggerCloudSync(immediate = false) {
+        if (!currentUser || !firestoreDb) return;
+
+        if (immediate) {
+          performCloudSync();
+          return;
+        }
+
+        clearTimeout(syncDebounceTimer);
+        syncDebounceTimer = setTimeout(() => {
+          performCloudSync();
+        }, 1500);
+      }
+
+      async function performCloudSync() {
+        if (!currentUser || !firestoreDb) return;
+        try {
+          setSyncBadge('online', 'Kaydediliyor...');
+          const userDocRef = firestoreDb.collection('study_users').doc(currentUser.uid);
+          await userDocRef.set({
+            profile: {
+              displayName: currentUser.displayName || '',
+              email: currentUser.email || '',
+              photoURL: currentUser.photoURL || ''
+            },
+            subjects: subjects,
+            tasks: tasks,
+            pomoSettings: pomoSettings,
+            pomoStats: {
+              completed: totalCompletedSessionsCount,
+              minutes: totalFocusMinutesCount
+            },
+            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+          }, { merge: true });
+
+          setSyncBadge('online', 'Bulut Aktif');
+        } catch (e) {
+          console.error('Cloud save failed:', e);
+          setSyncBadge('offline', 'Senkron Hatası');
+        }
+      }
+
+      // Firebase Config Modal Controls
+      const fbQuickPaste = document.getElementById('fbQuickPaste');
+      const btnAutoParseConfig = document.getElementById('btnAutoParseConfig');
+      const autoParseFeedback = document.getElementById('autoParseFeedback');
+      const fbModalStatusText = document.getElementById('fbModalStatusText');
+
+      function parseAndFillFirebaseConfig(raw) {
+        if (!raw) return;
+        let foundCount = 0;
+
+        const apiMatch = raw.match(/apiKey\s*[:=]\s*["']([^"']+)["']/i);
+        const authMatch = raw.match(/authDomain\s*[:=]\s*["']([^"']+)["']/i);
+        const projMatch = raw.match(/projectId\s*[:=]\s*["']([^"']+)["']/i);
+        const storeMatch = raw.match(/storageBucket\s*[:=]\s*["']([^"']+)["']/i);
+        const appMatch = raw.match(/appId\s*[:=]\s*["']([^"']+)["']/i);
+
+        if (apiMatch) { fbApiKey.value = apiMatch[1].trim(); foundCount++; }
+        if (authMatch) { fbAuthDomain.value = authMatch[1].trim(); foundCount++; }
+        if (projMatch) { fbProjectId.value = projMatch[1].trim(); foundCount++; }
+        if (storeMatch) { fbStorageBucket.value = storeMatch[1].trim(); foundCount++; }
+        if (appMatch) { fbAppId.value = appMatch[1].trim(); foundCount++; }
+
+        if (foundCount === 0) {
+          try {
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              if (parsed.apiKey) { fbApiKey.value = parsed.apiKey; foundCount++; }
+              if (parsed.authDomain) { fbAuthDomain.value = parsed.authDomain; foundCount++; }
+              if (parsed.projectId) { fbProjectId.value = parsed.projectId; foundCount++; }
+              if (parsed.storageBucket) { fbStorageBucket.value = parsed.storageBucket; foundCount++; }
+              if (parsed.appId) { fbAppId.value = parsed.appId; foundCount++; }
+            }
+          } catch(e) {}
+        }
+
+        if (foundCount > 0) {
+          autoParseFeedback.style.display = 'inline-block';
+          autoParseFeedback.textContent = `✓ ${foundCount} alan başarıyla ayrıştırıldı!`;
+          autoParseFeedback.style.color = 'var(--accent-emerald)';
+          sound.playChime('tick');
+        } else {
+          autoParseFeedback.style.display = 'inline-block';
+          autoParseFeedback.textContent = '⚠️ Koddan ayarlar okunamadı. Lütfen alanları kontrol ediniz.';
+          autoParseFeedback.style.color = 'var(--accent-rose)';
+        }
+      }
+
+      if (btnAutoParseConfig && fbQuickPaste) {
+        btnAutoParseConfig.addEventListener('click', () => {
+          parseAndFillFirebaseConfig(fbQuickPaste.value.trim());
+        });
+
+        fbQuickPaste.addEventListener('input', () => {
+          if (fbQuickPaste.value.includes('apiKey') || fbQuickPaste.value.includes('projectId')) {
+            parseAndFillFirebaseConfig(fbQuickPaste.value.trim());
+          }
+        });
+      }
+
+      function openFirebaseConfigModal() {
+        const savedConfigStr = localStorage.getItem('eren_firebase_config');
+        if (savedConfigStr) {
+          try {
+            const cfg = JSON.parse(savedConfigStr);
+            fbApiKey.value = cfg.apiKey || '';
+            fbAuthDomain.value = cfg.authDomain || '';
+            fbProjectId.value = cfg.projectId || '';
+            fbStorageBucket.value = cfg.storageBucket || '';
+            fbAppId.value = cfg.appId || '';
+          } catch(e) {}
+        }
+
+        if (fbModalStatusText) {
+          if (isCloudConfigured && currentUser) {
+            fbModalStatusText.innerHTML = `<span style="color:var(--accent-emerald); font-weight:700;">✓ Bulut Aktif:</span> <strong>${currentUser.displayName || currentUser.email || 'Kullanıcı'}</strong> olarak bağlısınız. Verileriniz canlı eşitleniyor.`;
+          } else if (isCloudConfigured) {
+            fbModalStatusText.innerHTML = `<span style="color:var(--accent-cyan); font-weight:700;">✓ Yapılandırma Kayıtlı:</span> Giriş yapılmadı. Üst menüdeki <strong>Google Giriş</strong> butonuna basabilirsiniz.`;
+          } else {
+            fbModalStatusText.innerHTML = `Firebase Console'dan kopyaladığınız kod bloğunu yukarıdaki <strong>⚡ Hızlı Yapıştır</strong> kutusuna yapıştırarak anında doldurabilirsiniz.`;
+          }
+        }
+
+        firebaseConfigModal.classList.add('active');
+      }
+
+      function closeFirebaseConfigModal() {
+        firebaseConfigModal.classList.remove('active');
+      }
+
+      btnFirebaseConfig.addEventListener('click', openFirebaseConfigModal);
+      btnCloseFirebaseModal.addEventListener('click', closeFirebaseConfigModal);
+      firebaseConfigModal.addEventListener('click', (e) => {
+        if (e.target === firebaseConfigModal) closeFirebaseConfigModal();
+      });
+
+      firebaseConfigForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const cfg = {
+          apiKey: fbApiKey.value.trim(),
+          authDomain: fbAuthDomain.value.trim(),
+          projectId: fbProjectId.value.trim(),
+          storageBucket: fbStorageBucket.value.trim(),
+          appId: fbAppId.value.trim()
+        };
+
+        if (!cfg.apiKey || !cfg.projectId) {
+          alert('Lütfen en az API Key ve Project ID alanlarını doldurun (veya Hızlı Yapıştır kutusunu kullanın).');
+          return;
+        }
+
+        localStorage.setItem('eren_firebase_config', JSON.stringify(cfg));
+        alert('Firebase yapılandırması başarıyla kaydedildi! Sayfa yenileniyor...');
+        closeFirebaseConfigModal();
+        window.location.reload();
+      });
+
+      btnClearFirebaseConfig.addEventListener('click', () => {
+        if (confirm('Kayıtlı Firebase ayarlarını silmek istiyor musunuz?')) {
+          localStorage.removeItem('eren_firebase_config');
+          fbApiKey.value = '';
+          fbAuthDomain.value = '';
+          fbProjectId.value = '';
+          fbStorageBucket.value = '';
+          fbAppId.value = '';
+          alert('Ayarlar temizlendi. Sayfa yerel depolama moduna geçiyor.');
+          window.location.reload();
+        }
+      });
+
+      // Initialize Firebase Engine on startup
+      initFirebaseEngine();
+
+      /* ==========================================================================
+         8. Dynamic Motivational Quotes Rotator
          ========================================================================== */
       const quotes = [
         '"Büyük hedefler, her gün atılan kararlı ve küçük adımlarla inşa edilir."',
